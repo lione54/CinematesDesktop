@@ -1,0 +1,8 @@
+.lognbg{
+    -fx-background-radius: 90px;
+    -fx-background-color: rgb(14,17,17);
+    -fx-border-radius: 90px;
+    -fx-border-width: 0.5px;
+    -fx-border-color: rgb(255,140,0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}

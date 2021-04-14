@@ -1,0 +1,26 @@
+.home_bg{
+    -fx-background-radius: 90px;
+    -fx-background-color: rgb(14,17,17);
+    -fx-border-radius: 90px;
+    -fx-border-width: 0.5px;
+    -fx-border-color: rgb(255,140,0);
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 10, 0, 0, 0);
+}
+
+.HomePanel{
+    -fx-background-color: rgb(14,17,17);
+    -fx-border-width: 1.5px;
+    -fx-border-style: solid solid solid solid;
+    -fx-border-color: rgb(255,140,0);
+}
+
+.sxPanel{
+    -fx-background-color: rgb(255,140,0);
+    -fx-border-style: solid solid solid solid;
+    -fx-border-width: 1.5px;
+    -fx-border-color: rgb(14,17,17);
+}
+
+.HomePanel2{
+    -fx-background-color: rgb(14,17,17);
+}

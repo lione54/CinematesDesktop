@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="476.0" prefWidth="304.0" styleClass="signbg" stylesheets="@../style/HomeSignInbg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Continua_Cotroller">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="52.0" layoutY="72.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logocinemates.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="closeButton" layoutX="228.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+      <Button fx:id="minimizeButton" layoutX="198.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+      <Label layoutX="74.0" layoutY="184.0" text="All'indirizzo da lei fornito" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="47.0" layoutY="202.0" text="le stiamo inviando una password " textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="75.0" layoutY="220.0" text="generata in automatico, " textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="41.0" layoutY="238.0" text="per ragioni di sicurezza la invitiamo " textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="77.0" layoutY="256.0" text="a cambiarla non appena" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="274.0" text="ha effettuato il primo accesso." textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="VaiAlLogButton" layoutX="103.0" layoutY="353.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Vai Al Log In" textFill="#ff9000">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

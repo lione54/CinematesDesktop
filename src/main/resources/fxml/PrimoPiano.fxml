@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="466.0" prefWidth="695.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Home_Controller">
+   <children>
+      <Pane layoutY="50.0" prefHeight="416.0" prefWidth="162.0" styleClass="sxPanel" stylesheets="@../style/WelcomeHomebg.css">
+         <children>
+            <ImageView fx:id="FotoProfiloAdmin" fitHeight="129.0" fitWidth="112.0" layoutX="24.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true" />
+            <Hyperlink fx:id="VisualizzaSegnalazioniLink" layoutX="5.0" layoutY="169.0" styleClass="Hyp_tex" stylesheets="@../style/HLink.css" text="Visualizza Segnalazioni" textFill="#0e1111">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="CambiaPasswdLink" layoutX="20.0" layoutY="193.0" styleClass="Hyp_tex" stylesheets="@../style/HLink.css" text="Cambio Password" textFill="#0e1111">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="PrimoPianoLink" layoutX="11.0" layoutY="217.0" styleClass="Hyp_tex" stylesheets="@../style/HLink.css" text="Lista In Primo Piano" textFill="#0e1111">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+            <Hyperlink fx:id="LogOutLink" layoutX="53.0" layoutY="241.0" styleClass="Hyp_tex" stylesheets="@../style/HLink.css" text="Log Out" textFill="#0e1111">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Hyperlink>
+         </children></Pane>
+      <Pane prefHeight="50.0" prefWidth="695.0" styleClass="HomePanel" stylesheets="@../style/WelcomeHomebg.css">
+         <children>
+            <Button fx:id="closeButton" layoutX="648.0" layoutY="13.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+            <Button fx:id="minimizeButton" layoutX="614.0" layoutY="13.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+            <Label layoutX="27.0" layoutY="16.0" text="Benvenuto" textFill="DARKORANGE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+            <Label fx:id="NomeAdminLabel" layoutX="102.0" layoutY="16.0" text="NomeAdmin!" textFill="DARKORANGE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

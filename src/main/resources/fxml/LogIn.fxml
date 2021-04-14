@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="477.0" prefWidth="328.0" styleClass="lognbg" stylesheets="@../style/HomeLogIn.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LogIn_Controller">
+   <children>
+      <Button fx:id="closeButton" layoutX="246.0" layoutY="23.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+      <Button fx:id="minimizeButton" layoutX="212.0" layoutY="23.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="57.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logocinemates.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="LogInButton" layoutX="80.0" layoutY="381.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Log In" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font></Button>
+      <PasswordField fx:id="Passwd" layoutX="121.0" layoutY="259.0" prefHeight="32.0" prefWidth="149.0" styleClass="text_field" stylesheets="@../style/TextField.css">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font></PasswordField>
+      <TextField fx:id="Email" layoutX="121.0" layoutY="217.0" prefHeight="28.0" prefWidth="149.0" styleClass="text_field" stylesheets="@../style/TextField.css">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font></TextField>
+      <Label layoutX="58.0" layoutY="232.0" text="Email:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font></Label>
+      <Label layoutX="45.0" layoutY="275.0" text="Password:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font></Label>
+      <Button fx:id="AnnullaButton" layoutX="165.0" layoutY="381.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="Error" layoutX="53.0" layoutY="328.0" prefHeight="18.0" prefWidth="223.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
