@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="426.0" prefWidth="281.0" styleClass="home_bg" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Esito_Contoller">
+   <children>
+      <Button fx:id="closeButton" layoutX="212.0" layoutY="22.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+      <Button fx:id="minimizeButton" layoutX="177.0" layoutY="22.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+      <Button fx:id="TornaAllaHome" layoutX="79.0" layoutY="340.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Torna Alla Home" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <ImageView fitHeight="94.0" fitWidth="166.0" layoutX="58.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logocinemates.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="24.0" layoutY="204.0" text="Segnalazione processata con successo" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

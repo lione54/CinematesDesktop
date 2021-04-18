@@ -20,10 +20,8 @@ import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.logging.Logger;
-
 
 
 public class LogIn_Controller extends Controller{
@@ -36,6 +34,26 @@ public class LogIn_Controller extends Controller{
     @FXML private PasswordField Passwd;
     @FXML private Label Error;
     public static final String JSON_ARRAY = "dbdata";
+
+    private static String NomeAdmin;
+    private static String FotoProf;
+
+    public static String getNomeAdmin() {
+        return NomeAdmin;
+    }
+
+    public void setNomeAdmin(String myVariable) {
+        this.NomeAdmin = myVariable;
+    }
+
+    public static String getFotoAdmin() {
+        return FotoProf;
+    }
+
+    public void setFotoAdmin(String myVariable) {
+        this.FotoProf = myVariable;
+    }
+
 
     @Override public void initialize() {
         Eventi();
@@ -76,6 +94,7 @@ public class LogIn_Controller extends Controller{
     private String Log() {
         String email = Email.getText().toString();
         String Password = Passwd.getText().toString();
+        String Foto = null;
         final int[] validatiUser = new int[1];
         final int[] validatiPass = new int[1];
         Webb webb = Webb.create();
@@ -85,29 +104,32 @@ public class LogIn_Controller extends Controller{
             Error.setText("Errore: Email Non Valida.");
             return "Error";
         } else {
-            JSONObject response = webb.post("http://192.168.1.9/cinematesdb/VerificaEsistenzaAdmin.php").param("Email_Admin", email).retry(1,false).asJsonObject().getBody();
+            JSONObject response = webb.post("http://192.168.1.9/cinematesdb/VerificaEsistenzaAdmin.php").param("Email_Admin", email).retry(1, false).asJsonObject().getBody();
             try {
                 JSONArray arrayuser = response.getJSONArray(JSON_ARRAY);
-                for(int i = 0; i < arrayuser.length(); i++) {
+                for (int i = 0; i < arrayuser.length(); i++) {
                     JSONObject object = arrayuser.getJSONObject(i);
                     String respo = object.getString("Esiste_Email_Admin");
+                    if(respo.equals("1")){
+                        Foto = object.getString("Foto_Profilo");
+                    }
                     validatiUser[0] = Integer.parseInt(respo);
                 }
-                if(validatiUser[0] == 1){
-                    JSONObject response1 = webb.post("http://192.168.1.9/cinematesdb/VerificaPasswdAdmin.php").param("Psw_Admin", Password).retry(1,false).asJsonObject().getBody();
+                if (validatiUser[0] == 1) {
+                    JSONObject response1 = webb.post("http://192.168.1.9/cinematesdb/VerificaPasswdAdmin.php").param("Psw_Admin", Password).retry(1, false).asJsonObject().getBody();
                     JSONArray arraypass = response1.getJSONArray(JSON_ARRAY);
-                    for(int i = 0; i < arraypass.length(); i++) {
+                    for (int i = 0; i < arraypass.length(); i++) {
                         JSONObject object = arraypass.getJSONObject(i);
                         String respo = object.getString("Esiste_Passwd_Admin");
                         validatiPass[0] = Integer.parseInt(respo);
                     }
-                    if(validatiPass[0] == 0){
+                    if (validatiPass[0] == 0) {
                         Error.setFont(Font.font("Calibri", 15));
                         Error.setTextFill(Color.RED);
                         Error.setText("Errore: Password Sbagliata.");
                         return "Error";
                     }
-                }else{
+                } else {
                     Error.setFont(Font.font("Calibri", 15));
                     Error.setTextFill(Color.RED);
                     Error.setText("Errore: Admin Non Esistente");
@@ -116,6 +138,10 @@ public class LogIn_Controller extends Controller{
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+        }
+        setNomeAdmin(email);
+        if(!(Foto.equals("null"))){
+            setFotoAdmin(Foto);
         }
         return "Successfull";
     }

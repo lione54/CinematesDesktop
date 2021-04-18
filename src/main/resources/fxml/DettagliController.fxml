@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="549.0" prefWidth="334.0" styleClass="home_bg" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dettagli_Controller">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="67.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logocinemates.png" />
+         </image></ImageView>
+      <Button fx:id="minimizeButton" layoutX="223.0" layoutY="25.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+      <Button fx:id="closeButton" layoutX="255.0" layoutY="25.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+      <Button fx:id="DeclinaButton" layoutX="246.0" layoutY="465.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Declina" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="AccettaButton" layoutX="167.0" layoutY="465.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Accetta" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="121.0" layoutY="133.0" text="Utente Segnalato" textFill="DARKORANGE" />
+      <Label layoutX="116.0" layoutY="188.0" text="Utente Segnalatore" textFill="DARKORANGE" />
+      <Label layoutX="141.0" layoutY="243.0" text="Titolo Film" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri" size="12.0" />
+         </font>
+      </Label>
+      <Label layoutX="134.0" layoutY="295.0" text="Motivazione" textFill="DARKORANGE" />
+      <Label layoutX="122.0" layoutY="350.0" text="Testo Recensione" textFill="DARKORANGE" />
+      <TextArea fx:id="UtenteSegnalato" layoutX="84.0" layoutY="150.0" prefHeight="0.0" prefWidth="167.0" styleClass="text_area" stylesheets="@../style/TextArea.css" />
+      <TextArea fx:id="UtenteSegnalatore" layoutX="84.0" layoutY="205.0" prefHeight="38.0" prefWidth="167.0" styleClass="text_area" stylesheets="@../style/TextArea.css" />
+      <TextArea fx:id="TitoloFilm" layoutX="84.0" layoutY="257.0" prefHeight="38.0" prefWidth="167.0" styleClass="text_area" stylesheets="@../style/TextArea.css" />
+      <TextArea fx:id="Motivazione" layoutX="85.0" layoutY="312.0" prefHeight="38.0" prefWidth="167.0" styleClass="text_area" stylesheets="@../style/TextArea.css" />
+      <TextArea fx:id="TestoRecensione" layoutX="85.0" layoutY="367.0" prefHeight="38.0" prefWidth="167.0" styleClass="text_area" stylesheets="@../style/TextArea.css" />
+   </children>
+</AnchorPane>

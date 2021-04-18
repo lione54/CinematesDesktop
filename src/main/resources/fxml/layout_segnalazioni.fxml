@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="ItemSegnalazioni" prefHeight="176.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="23.0" layoutY="78.0" text="Ha segnalato la recensione di" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="VaiAiDettagli" layoutX="336.0" layoutY="145.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Vai ai dettagli" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="NomeUtenteSegnalato" layoutX="211.0" layoutY="79.0" prefHeight="17.0" prefWidth="154.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="23.0" layoutY="97.0" text="del seguente film:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Motivazioni" layoutX="143.0" layoutY="97.0" prefHeight="18.0" prefWidth="267.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fx:id="FotoProfilo" fitHeight="47.0" fitWidth="46.0" layoutX="23.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+      <Label fx:id="NomeUtenteSegnalatore" layoutX="89.0" layoutY="34.0" prefHeight="17.0" prefWidth="132.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.text.Font?>
+<AnchorPane fx:id="SignIn" prefHeight="476.0" prefWidth="304.0" styleClass="signbg" stylesheets="@../style/HomeSignInbg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignIn_Controller">
+    <children>
+        <Button fx:id="minimizeButton" layoutX="199.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+        <Button fx:id="closeButton" layoutX="230.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+        <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="55.0" layoutY="57.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../images/logocinemates.png" />
+            </image>
+        </ImageView>
+        <Button fx:id="ConfermaButton" layoutX="78.0" layoutY="423.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
+            <font>
+                <Font name="Calibri Bold" size="15.0" />
+            </font>
+        </Button>
+        <Button fx:id="AnnullaButton" layoutX="161.0" layoutY="424.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
+            <font>
+                <Font name="Calibri Bold" size="14.0" />
+            </font>
+        </Button>
+        <Label layoutX="36.0" layoutY="253.0" text="Email:" textFill="DARKORANGE">
+            <font>
+                <Font name="Calibri Bold" size="15.0" />
+            </font>
+        </Label>
+        <TextField fx:id="Email" layoutX="85.0" layoutY="238.0" styleClass="text_field" stylesheets="@../style/TextField.css">
+            <font>
+                <Font name="Calibri Bold" size="15.0" />
+            </font>
+        </TextField>
+        <Label fx:id="Error" layoutX="69.0" layoutY="333.0" prefHeight="18.0" prefWidth="184.0" textFill="DARKORANGE">
+            <font>
+                <Font name="Calibri Bold" size="15.0" />
+            </font>
+        </Label>
+    </children>
+</AnchorPane>
+

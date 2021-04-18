@@ -1,0 +1,27 @@
+Controller/Controller.java
+ Controller.Controller
+Main/Welcome.java
+ Main.Welcome
+Controller/CambiaPassword_Controller.java
+ Controller.CambiaPassword_Controller
+Controller/Continua_Cotroller.java
+ Controller.Continua_Cotroller
+Controller/LogIn_Controller.java
+ Controller.LogIn_Controller
+Controller/Esito_Contoller.java
+ Controller.Esito_Contoller
+Controller/LogOut_Controller.java
+ Controller.LogOut_Controller
+Controller/SignIn_Controller.java
+ Controller.SignIn_Controller
+Controller/Welcome_Controller.java
+ Controller.Welcome_Controller
+Controller/Home_Controller.java
+ Controller.Home_Controller
+ Controller.Home_Controller$1
+ModelData/DBModelSegnalazioni.java
+ ModelData.DBModelSegnalazioni
+Adapter/DBModelSegnalazioniListViewCell.java
+ Adapter.DBModelSegnalazioniListViewCell
+Controller/Dettagli_Controller.java
+ Controller.Dettagli_Controller

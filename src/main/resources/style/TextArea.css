@@ -1,0 +1,11 @@
+.text_area{
+    text-area-background: rgb(14,17,17);
+    -fx-text-fill: rgb(255,140,0);
+    -fx-border-width: 1px;
+    -fx-border-style: hidden hidden solid hidden;
+    -fx-border-color: rgb(255,140,0);
+}
+
+.text_area .content {
+    -fx-background-color: text-area-background ;
+}

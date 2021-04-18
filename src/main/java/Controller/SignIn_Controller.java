@@ -118,7 +118,7 @@ public class SignIn_Controller extends Controller {
         String Passwd = RandomPass(10).toString();
         final int[] validati = new int[1];
         Webb webb = Webb.create();
-        if (!(email.matches("(.*)@(.*)"))) {
+        if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}"))){
             Error.setFont(Font.font("Calibri", 15));
             Error.setTextFill(Color.RED);
             Error.setText("Errore: Email Non Valida.");
