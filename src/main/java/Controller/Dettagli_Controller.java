@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
@@ -23,7 +24,7 @@ public class Dettagli_Controller extends Controller{
 
     @FXML private Button closeButton, DeclinaButton;
     @FXML private Button minimizeButton, AccettaButton;
-    @FXML private TextArea UtenteSegnalato, UtenteSegnalatore, Motivazione, TitoloFilm, TestoRecensione;
+    @FXML private Label UtenteSegnalato, UtenteSegnalatore, Motivazione, TitoloFilm, TestoRecensione;
 
     @Override public void initialize() {
         UtenteSegnalato.setText(DBModelSegnalazioniListViewCell.getUtenteSegnalato());
@@ -43,7 +44,7 @@ public class Dettagli_Controller extends Controller{
 
     private void AccettaButtonClicked(MouseEvent mouseEvent) {
         Webb webb = Webb.create();
-        webb.post("http://192.168.1.9/cinematesdb/AccettaSegnalazione.php").param("UtenteSegnalato", DBModelSegnalazioniListViewCell.getUtenteSegnalato()).param("UtenteSegnalatore", DBModelSegnalazioniListViewCell.getUtenteSegnalatore()).param("Id_Segnalazione", DBModelSegnalazioniListViewCell.getIdSegnalazione()).ensureSuccess().asVoid();
+        webb.post("http://192.168.178.48/cinematesdb/AccettaSegnalazione.php").param("UtenteSegnalato", DBModelSegnalazioniListViewCell.getUtenteSegnalato()).param("UtenteSegnalatore", DBModelSegnalazioniListViewCell.getUtenteSegnalatore()).param("Id_Segnalazione", DBModelSegnalazioniListViewCell.getIdSegnalazione()).ensureSuccess().asVoid();
         Stage stage = (Stage)  AccettaButton.getScene().getWindow();
         stage.close();
         Node source = (Node)  mouseEvent.getSource();
@@ -52,7 +53,7 @@ public class Dettagli_Controller extends Controller{
     }
     private void DeclinaButtonClicked(MouseEvent mouseEvent) {
         Webb webb = Webb.create();
-        webb.post("http://192.168.1.9/cinematesdb/DeclinaSengnalazione.php").param("UtenteSegnalato", DBModelSegnalazioniListViewCell.getUtenteSegnalato()).param("UtenteSegnalatore", DBModelSegnalazioniListViewCell.getUtenteSegnalatore()).param("Id_Segnalazione", DBModelSegnalazioniListViewCell.getIdSegnalazione()).ensureSuccess().asVoid();
+        webb.post("http://192.168.178.48/cinematesdb/DeclinaSengnalazione.php").param("UtenteSegnalato", DBModelSegnalazioniListViewCell.getUtenteSegnalato()).param("UtenteSegnalatore", DBModelSegnalazioniListViewCell.getUtenteSegnalatore()).param("Id_Segnalazione", DBModelSegnalazioniListViewCell.getIdSegnalazione()).ensureSuccess().asVoid();
         Stage stage = (Stage)  DeclinaButton.getScene().getWindow();
         stage.close();
         Node source = (Node)  mouseEvent.getSource();

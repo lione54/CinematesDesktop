@@ -5,14 +5,14 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="ItemSegnalazioni" prefHeight="176.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ItemSegnalazioni" prefHeight="150.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label layoutX="23.0" layoutY="78.0" text="Ha segnalato la recensione di" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="VaiAiDettagli" layoutX="336.0" layoutY="145.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Vai ai dettagli" textFill="DARKORANGE">
+      <Button fx:id="VaiAiDettagli" layoutX="400.0" layoutY="110.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Vai ai dettagli" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>

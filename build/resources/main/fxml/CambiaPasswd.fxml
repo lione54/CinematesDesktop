@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="466.0" prefWidth="695.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CambiaPassword_Controller">
+<AnchorPane prefHeight="466.0" prefWidth="695.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.CambiaPassword_Controller">
    <children>
       <Pane layoutY="50.0" prefHeight="416.0" prefWidth="162.0" styleClass="sxPanel" stylesheets="@../style/WelcomeHomebg.css">
          <children>
@@ -25,7 +25,11 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Hyperlink>
-         </children></Pane>
+            <ImageView layoutX="110.0" layoutY="222.0">
+               <Image url="@../images/logout.png" />
+            </ImageView>
+         </children>
+      </Pane>
       <Pane prefHeight="50.0" prefWidth="695.0" styleClass="HomePanel" stylesheets="@../style/WelcomeHomebg.css">
          <children>
             <Button fx:id="closeButton" layoutX="648.0" layoutY="13.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
@@ -52,24 +56,43 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="268.0" layoutY="138.0" text="Vecchia Password:" textFill="DARKORANGE">
+      <Label layoutX="290.0" layoutY="187.0" text="Vecchia Password:" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="271.0" layoutY="189.0" text="Nuova Password:" textFill="DARKORANGE">
+      <Label layoutX="297.0" layoutY="238.0" text="Nuova Password:" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="NuovaPassword" layoutX="399.0" layoutY="184.0" styleClass="text_field" stylesheets="@../style/TextField.css" />
-      <PasswordField fx:id="VecchiaPassword" layoutX="399.0" layoutY="133.0" styleClass="text_field" stylesheets="@../style/TextField.css" />
-      <Label fx:id="ErrorePassword" layoutX="268.0" layoutY="334.0" prefHeight="17.0" prefWidth="311.0" textFill="RED" />
-      <Label layoutX="211.0" layoutY="255.0" prefHeight="18.0" prefWidth="174.0" text="Conferma Nuova Password:" textFill="DARKORANGE">
+      <PasswordField fx:id="NuovaPassword" layoutX="424.0" layoutY="230.0" styleClass="text_field" stylesheets="@../style/TextField.css" />
+      <ImageView layoutX="585.0" layoutY="189.0">
+         <Image url="@../images/padlock.png" />
+      </ImageView>
+      <PasswordField fx:id="VecchiaPassword" layoutX="424.0" layoutY="180.0" styleClass="text_field" stylesheets="@../style/TextField.css" />
+      <ImageView layoutX="585.0" layoutY="240.0">
+         <Image url="@../images/padlock.png" />
+      </ImageView>
+      <Label fx:id="ErrorePassword" layoutX="238.0" layoutY="334.0" prefHeight="17.0" prefWidth="420.0" textFill="RED" />
+      <Label layoutX="232.0" layoutY="290.0" prefHeight="18.0" prefWidth="174.0" text="Conferma Nuova Password:" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <PasswordField fx:id="ConfermaPassword" layoutX="399.0" layoutY="252.0" styleClass="text_field" stylesheets="@../style/TextField.css" />
+      <PasswordField fx:id="ConfermaPassword" layoutX="424.0" layoutY="280.0" styleClass="text_field" stylesheets="@../style/TextField.css" />
+      <ImageView layoutX="585.0" layoutY="290.0">
+         <Image url="@../images/padlock.png" />
+      </ImageView>
+      <Label layoutX="218.0" layoutY="84.0" />
+      <Label layoutX="184.0" layoutY="60.0" prefHeight="28.0" prefWidth="156.0" text="ADMIN PANEL" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="24.0" />
+         </font>
+      </Label>
+      <Label layoutX="184.0" layoutY="88.0" text="Sei qui : Cambio Password" textFill="#ff8800">
+         <font>
+            <Font size="13.0" />
+         </font></Label>
    </children>
 </AnchorPane>

@@ -10,7 +10,7 @@
    <children>
       <Button fx:id="closeButton" layoutX="212.0" layoutY="22.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
       <Button fx:id="minimizeButton" layoutX="177.0" layoutY="22.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
-      <Button fx:id="TornaAllaHome" layoutX="79.0" layoutY="340.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Torna Alla Home" textFill="DARKORANGE">
+      <Button fx:id="TornaAllaHome" layoutX="79.0" layoutY="340.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Torna alla home" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>

@@ -121,10 +121,10 @@ public class SignIn_Controller extends Controller {
         if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}"))){
             Error.setFont(Font.font("Calibri", 15));
             Error.setTextFill(Color.RED);
-            Error.setText("Errore: Email Non Valida.");
+            Error.setText("Errore: Email non valida");
             return "Error";
         } else {
-            JSONObject response = webb.post("http://192.168.1.9/cinematesdb/VerificaEsistenzaAdmin.php").param("Email_Admin", email).retry(1,false).asJsonObject().getBody();
+            JSONObject response = webb.post("http://192.168.178.48/cinematesdb/VerificaEsistenzaAdmin.php").param("Email_Admin", email).retry(1,false).asJsonObject().getBody();
             try {
                 JSONArray array = response.getJSONArray(JSON_ARRAY);
                 for(int i = 0; i < array.length(); i++) {
@@ -133,11 +133,11 @@ public class SignIn_Controller extends Controller {
                     validati[0] = Integer.parseInt(respo);
                 }
                 if(validati[0] == 0){
-                    webb.post("http://192.168.1.9/cinematesdb/SignInAdmin.php").param("Email_Admin", email).param("Psw_Admin", Passwd).ensureSuccess().asVoid();
+                    webb.post("http://192.168.178.48/cinematesdb/SignInAdmin.php").param("Email_Admin", email).param("Psw_Admin", Passwd).ensureSuccess().asVoid();
                 }else{
                     Error.setFont(Font.font("Calibri", 15));
                     Error.setTextFill(Color.RED);
-                    Error.setText("Errore: Admin Esistente");
+                    Error.setText("Errore: Admin esistente");
                     return "Error";
                 }
             } catch (JSONException e) {

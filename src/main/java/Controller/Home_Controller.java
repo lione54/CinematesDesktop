@@ -6,6 +6,7 @@ import com.goebl.david.Webb;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -63,14 +64,14 @@ public class Home_Controller extends Controller {
     @Override public void initialize(){
         NomeAdminLabel.setText(NomeAdminLabel.getText() + LogIn_Controller.getNomeAdmin());
         try {
-            JSONObject response = webb.post("http://192.168.1.9/cinematesdb/PrendiFotoProfiloAdimn.php").param("Email_Admin", NomeAdminLabel.getText().toString()).retry(1, false).asJsonObject().getBody();
+            JSONObject response = webb.post("http://192.168.178.48/cinematesdb/PrendiFotoProfiloAdimn.php").param("Email_Admin", NomeAdminLabel.getText().toString()).retry(1, false).asJsonObject().getBody();
             JSONArray array = response.getJSONArray(JSON_ARRAY);
             for (int i = 0; i < array.length(); i++) {
                 JSONObject object = array.getJSONObject(i);
                 Image = object.getString("Foto_Profilo");
             }
             if(!(Image.equals("null"))){
-                FotoProfiloAdmin.setImage(new Image("http://192.168.1.9/cinematesdb/" +  Image));
+                FotoProfiloAdmin.setImage(new Image("http://192.168.178.48/cinematesdb/" +  Image));
             }else{
                 FotoProfiloAdmin.setImage(new Image("/images/businessman.png"));
             }
@@ -107,7 +108,7 @@ public class Home_Controller extends Controller {
                     FotoProfiloAdmin.setImage(new Image(url.toExternalForm()));
                     byte[] fileContent = FileUtils.readFileToByteArray(files);
                     String encodedString = Base64.getEncoder().encodeToString(fileContent);
-                    webb.post("http://192.168.1.9/cinematesdb/CambiaFotoProfiloAdimn.php").param("Email_Admin", NomeAdminLabel.getText().toString()).param("nome", encodedString).ensureSuccess().asVoid();
+                    webb.post("http://192.168.178.48/cinematesdb/CambiaFotoProfiloAdimn.php").param("Email_Admin", NomeAdminLabel.getText().toString()).param("nome", encodedString).ensureSuccess().asVoid();
                     Node source = (Node) mouseEvent.getSource();
                     Stage primaryStage = (Stage) source.getScene().getWindow();
                     VisualizzaSegnalazioni(primaryStage);
@@ -192,7 +193,7 @@ public class Home_Controller extends Controller {
 
     public ObservableList<DBModelSegnalazioni> CercaSegnalazioni() {
         Webb webb = Webb.create();
-        JSONObject response = webb.post("http://192.168.1.9/cinematesdb/CercaSegnalazioni.php").retry(1, false).asJsonObject().getBody();
+        JSONObject response = webb.post("http://192.168.178.48/cinematesdb/CercaSegnalazioni.php").retry(1, false).asJsonObject().getBody();
         try {
             JSONArray array = response.getJSONArray(JSON_ARRAY);
             for (int i = 0; i < array.length(); i++) {
@@ -230,4 +231,6 @@ public class Home_Controller extends Controller {
             Logger.getLogger(Home_Controller.class.toString()).severe("main_view loading failed");
         }
     }
+
+
 }

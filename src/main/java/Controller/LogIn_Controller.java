@@ -101,10 +101,10 @@ public class LogIn_Controller extends Controller{
         if (!(email.matches("(.*)@(.*)"))) {
             Error.setFont(Font.font("Calibri", 15));
             Error.setTextFill(Color.RED);
-            Error.setText("Errore: Email Non Valida.");
+            Error.setText("Errore: Email non valida");
             return "Error";
         } else {
-            JSONObject response = webb.post("http://192.168.1.9/cinematesdb/VerificaEsistenzaAdmin.php").param("Email_Admin", email).retry(1, false).asJsonObject().getBody();
+            JSONObject response = webb.post("http://192.168.178.48/cinematesdb/VerificaEsistenzaAdmin.php").param("Email_Admin", email).retry(1, false).asJsonObject().getBody();
             try {
                 JSONArray arrayuser = response.getJSONArray(JSON_ARRAY);
                 for (int i = 0; i < arrayuser.length(); i++) {
@@ -116,7 +116,7 @@ public class LogIn_Controller extends Controller{
                     validatiUser[0] = Integer.parseInt(respo);
                 }
                 if (validatiUser[0] == 1) {
-                    JSONObject response1 = webb.post("http://192.168.1.9/cinematesdb/VerificaPasswdAdmin.php").param("Psw_Admin", Password).retry(1, false).asJsonObject().getBody();
+                    JSONObject response1 = webb.post("http://192.168.178.48/cinematesdb/VerificaPasswdAdmin.php").param("Psw_Admin", Password).retry(1, false).asJsonObject().getBody();
                     JSONArray arraypass = response1.getJSONArray(JSON_ARRAY);
                     for (int i = 0; i < arraypass.length(); i++) {
                         JSONObject object = arraypass.getJSONObject(i);
@@ -126,13 +126,13 @@ public class LogIn_Controller extends Controller{
                     if (validatiPass[0] == 0) {
                         Error.setFont(Font.font("Calibri", 15));
                         Error.setTextFill(Color.RED);
-                        Error.setText("Errore: Password Sbagliata.");
+                        Error.setText("Errore: password sbagliata");
                         return "Error";
                     }
                 } else {
                     Error.setFont(Font.font("Calibri", 15));
                     Error.setTextFill(Color.RED);
-                    Error.setText("Errore: Admin Non Esistente");
+                    Error.setText("Errore: Admin non esistente");
                     return "Error";
                 }
             } catch (JSONException e) {

@@ -14,7 +14,7 @@
       </ImageView>
       <Button fx:id="closeButton" layoutX="228.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
       <Button fx:id="minimizeButton" layoutX="198.0" layoutY="17.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
-      <Button fx:id="WelcomeButton" layoutX="90.0" layoutY="378.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Torna Alla Home" textFill="#ff9000">
+      <Button fx:id="WelcomeButton" layoutX="90.0" layoutY="378.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Torna alla home" textFill="#ff9000">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
@@ -24,7 +24,7 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="NomeAdmin" layoutX="64.0" layoutY="229.0" prefHeight="18.0" prefWidth="177.0" textFill="DARKORANGE">
+      <Label fx:id="NomeAdmin" layoutX="74.0" layoutY="229.0" prefHeight="18.0" prefWidth="177.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font></Label>

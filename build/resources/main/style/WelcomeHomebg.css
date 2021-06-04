@@ -25,3 +25,9 @@
     -fx-background-color: rgb(14,17,17);
     -fx-background: rgb(14,17,17);
 }
+
+.toggle-button {
+    -shrink-animate-on-press: true;
+    -fx-background-color: rgb(255,140,0);
+}
+

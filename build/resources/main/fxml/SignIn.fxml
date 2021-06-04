@@ -18,12 +18,12 @@
                 <Image url="@../images/logocinemates.png" />
             </image>
         </ImageView>
-        <Button fx:id="ConfermaButton" layoutX="78.0" layoutY="423.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
+        <Button fx:id="ConfermaButton" layoutX="70.0" layoutY="323.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
             <font>
                 <Font name="Calibri Bold" size="15.0" />
             </font>
         </Button>
-        <Button fx:id="AnnullaButton" layoutX="161.0" layoutY="424.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
+        <Button fx:id="AnnullaButton" layoutX="165.0" layoutY="324.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
             <font>
                 <Font name="Calibri Bold" size="14.0" />
             </font>
@@ -33,12 +33,15 @@
                 <Font name="Calibri Bold" size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="Email" layoutX="85.0" layoutY="238.0" styleClass="text_field" stylesheets="@../style/TextField.css">
+        <TextField fx:id="Email" prefWidth="160.0" layoutX="85.0" layoutY="238.0" styleClass="text_field" stylesheets="@../style/TextField.css">
             <font>
                 <Font name="Calibri Bold" size="15.0" />
             </font>
         </TextField>
-        <Label fx:id="Error" layoutX="69.0" layoutY="333.0" prefHeight="18.0" prefWidth="184.0" textFill="DARKORANGE">
+        <ImageView layoutX="250.0" layoutY="249.0">
+            <Image url="@../images/at.png" />
+        </ImageView>
+        <Label fx:id="Error" layoutX="80.0" layoutY="289.0" prefHeight="18.0" prefWidth="184.0" textFill="DARKORANGE">
             <font>
                 <Font name="Calibri Bold" size="15.0" />
             </font>

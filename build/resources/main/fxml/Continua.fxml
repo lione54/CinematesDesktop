@@ -44,7 +44,7 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="VaiAlLogButton" layoutX="103.0" layoutY="353.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Vai Al Log In" textFill="#ff9000">
+      <Button fx:id="VaiAlLogButton" layoutX="103.0" layoutY="353.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Vai al log in" textFill="#ff9000">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>

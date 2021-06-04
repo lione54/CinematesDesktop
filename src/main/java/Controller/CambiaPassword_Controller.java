@@ -42,7 +42,7 @@ public class CambiaPassword_Controller extends Controller{
 
     @Override public void initialize() {
         NomeAdminLabel.setText(NomeAdminLabel.getText() + LogIn_Controller.getNomeAdmin());
-        FotoProfiloAdmin.setImage(new Image("http://192.168.1.9/cinematesdb/" +  LogIn_Controller.getFotoAdmin()));
+        FotoProfiloAdmin.setImage(new Image("http://192.168.178.48/cinematesdb/" +  LogIn_Controller.getFotoAdmin()));
         Eventi();
     }
 
@@ -61,7 +61,7 @@ public class CambiaPassword_Controller extends Controller{
         NuovaPassword.clear();
         ErrorePassword.setFont(Font.font("Calibri", 15));
         ErrorePassword.setTextFill(Color.RED);
-        ErrorePassword.setText("Attenzione: La password non verra' aggiornata.");
+        ErrorePassword.setText("Attenzione: La password non verra' aggiornata");
         Stage stage = (Stage)   AnnullaButton.getScene().getWindow();
         stage.close();
         Node source = (Node)  mouseEvent.getSource();
@@ -87,37 +87,37 @@ public class CambiaPassword_Controller extends Controller{
             if (VecchiaPswd.length() == 0){
                 ErrorePassword.setFont(Font.font("Calibri", 15));
                 ErrorePassword.setTextFill(Color.RED);
-                ErrorePassword.setText("Errore: Il campo Vecchia Password e' vuoto.");
+                ErrorePassword.setText("Errore: Vecchia Password e' vuoto, Inserire Vecchia Password");
                 return "Error";
             }else if(NuovaPswd.length() == 0){
                 ErrorePassword.setFont(Font.font("Calibri", 15));
                 ErrorePassword.setTextFill(Color.RED);
-                ErrorePassword.setText("Errore: Il campo Nuova Password e' vuoto.");
+                ErrorePassword.setText("Errore: Nuova Password e' vuoto, Inserire Nuova Password");
                 return "Error";
             }else{
                 ErrorePassword.setFont(Font.font("Calibri", 15));
                 ErrorePassword.setTextFill(Color.RED);
-                ErrorePassword.setText("Errore: Il campo Conferma Password e' vuoto.");
+                ErrorePassword.setText("Errore: Conferma Nuova Password e' vuoto, re-inserire Password");
                 return "Error";
             }
         }else if(VecchiaPswd.equals(NuovaPswd)){
             ErrorePassword.setFont(Font.font("Calibri", 15));
             ErrorePassword.setTextFill(Color.RED);
-            ErrorePassword.setText("Errore: Le password non possono coincidere.");
+            ErrorePassword.setText("Errore: Le password Vecchia con la Nuova non puo' coincidere");
             return "Error";
         }else if(NuovaPswd.length() <= 5){
             ErrorePassword.setFont(Font.font("Calibri", 15));
             ErrorePassword.setTextFill(Color.RED);
-            ErrorePassword.setText("Errore: Password troppo breve deve essere almeno di 6 caratteri.");
+            ErrorePassword.setText("Errore: La Nuova Password deve contenere almeno 6 caratteri");
             return "Error";
         }else if(!(ConfermaPswd.equals(NuovaPswd))){
             ErrorePassword.setFont(Font.font("Calibri", 15));
             ErrorePassword.setTextFill(Color.RED);
-            ErrorePassword.setText("Errore: La password non coincide.");
+            ErrorePassword.setText("Errore: La Nuova Password non coincide con la Conferma Password");
             return "Error";
         }else{
             Webb webb = Webb.create();
-            webb.post("http://192.168.1.9/cinematesdb/CambiaPasswdAdmin.php").param("Email_Admin", NomeAdminLabel.getText().toString()).param("Psw_Admin", ConfermaPswd).ensureSuccess().asVoid();
+            webb.post("http://192.168.178.48/cinematesdb/CambiaPasswdAdmin.php").param("Email_Admin", NomeAdminLabel.getText().toString()).param("Psw_Admin", ConfermaPswd).ensureSuccess().asVoid();
         }
         return "Successfull";
     }

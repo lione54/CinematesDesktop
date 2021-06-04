@@ -106,7 +106,7 @@ public class DBModelSegnalazioniListViewCell extends ListCell<DBModelSegnalazion
                 NomeUtenteSegnalato.setText(dbModelSegnalazioni.getUserSegnalato());
                 String Titolo = dbModelSegnalazioni.getTitolo_Film_Recensito().replaceAll("/","'");
                 Motivazioni.setText(Titolo);
-                FotoProfilo.setImage(new Image("http://192.168.1.9/cinematesdb/" + dbModelSegnalazioni.getFotoProfilo()));
+                FotoProfilo.setImage(new Image("http://192.168.178.48/cinematesdb/" + dbModelSegnalazioni.getFotoProfilo()));
                 VaiAiDettagli.setOnAction(event -> VaiAidettagliClicked(getItem().getTitolo_Film_Recensito(),getItem().getUserSegnalato(),getItem().getUserSegnalatore(), getItem().getMotivazione(), getItem().getTesto_Recensione(), getItem().getId_Segnalazione(),event));
                 setText(null);
                 setGraphic(ItemSegnalazioni);
