@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="477.0" prefWidth="328.0" styleClass="lognbg" stylesheets="@../style/HomeLogIn.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LogIn_Controller">
+<AnchorPane prefHeight="477.0" prefWidth="317.0" styleClass="lognbg" stylesheets="@../style/HomeLogIn.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.LogIn_Controller">
    <children>
       <Button fx:id="closeButton" layoutX="246.0" layoutY="23.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
       <Button fx:id="minimizeButton" layoutX="212.0" layoutY="23.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
@@ -14,41 +14,48 @@
             <Image url="@../images/logocinemates.png" />
          </image>
       </ImageView>
-      <Button fx:id="LogInButton" layoutX="90.0" layoutY="381.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Log In" textFill="DARKORANGE">
+      <Button fx:id="LogInButton" layoutX="82.0" layoutY="395.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Log In" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font></Button>
-      <PasswordField fx:id="Passwd" layoutX="121.0" layoutY="259.0" prefHeight="32.0" prefWidth="149.0" styleClass="text_field" stylesheets="@../style/TextField.css">
-         <font>
-            <Font name="Calibri Bold" size="15.0" />
-         </font></PasswordField>
-      <TextField fx:id="Email" layoutX="121.0" layoutY="217.0" prefHeight="28.0" prefWidth="149.0" styleClass="text_field" stylesheets="@../style/TextField.css">
-         <font>
-            <Font name="Calibri Bold" size="15.0" />
-         </font></TextField>
-      <Label layoutX="58.0" layoutY="232.0" text="Email:" textFill="DARKORANGE">
-         <font>
-            <Font name="Calibri Bold" size="15.0" />
-         </font></Label>
-      <ImageView layoutX="275.0" layoutY="225.0">
-         <Image url="@../images/at.png" />
-      </ImageView>
-      <ImageView layoutX="275.0" layoutY="270.0">
-         <Image url="@../images/padlock.png" />
-      </ImageView>
-      <Label layoutX="45.0" layoutY="275.0" text="Password:" textFill="DARKORANGE">
-         <font>
-            <Font name="Calibri Bold" size="15.0" />
-         </font></Label>
-      <Button fx:id="AnnullaButton" layoutX="165.0" layoutY="381.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
+      <Button fx:id="AnnullaButton" layoutX="165.0" layoutY="395.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Button>
-      <Label fx:id="Error" layoutX="90.0" layoutY="318.0" prefHeight="18.0" prefWidth="223.0" textFill="DARKORANGE">
+      <Label fx:id="Error" layoutX="54.0" layoutY="353.0" prefHeight="18.0" prefWidth="223.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
+      <CheckBox fx:id="Ricordami" layoutX="110.0" layoutY="317.0" mnemonicParsing="false" stylesheets="@../style/CheckBox.css" text="Ricordami" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </CheckBox>
+      <Hyperlink fx:id="CliccaQui" layoutX="214.0" layoutY="267.0" prefHeight="25.0" prefWidth="65.0" text="Clicca qui">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Hyperlink>
+      <Label layoutX="25.0" layoutY="270.0" text="Hai dimenticato la password?" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <VBox layoutX="32.0" layoutY="176.0" prefHeight="63.0" prefWidth="251.0">
+         <children>
+            <TextField fx:id="Email" prefHeight="28.0" prefWidth="149.0" promptText="Email" styleClass="text_field" stylesheets="@../style/TextField.css">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </TextField>
+            <PasswordField fx:id="Passwd" prefHeight="32.0" prefWidth="149.0" promptText="Password" styleClass="text_field" stylesheets="@../style/TextField.css">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font>
+            </PasswordField>
+         </children>
+      </VBox>
    </children>
 </AnchorPane>

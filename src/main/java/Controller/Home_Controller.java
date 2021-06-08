@@ -1,12 +1,14 @@
 package Controller;
 
-import Adapter.DBModelSegnalazioniListViewCell;
-import ModelData.DBModelSegnalazioni;
-import com.goebl.david.Webb;
+import Adapter.SegnalazioniAdapter;
+import Model.ModelDBInterno.*;
+import Model.ModelTMDB.MovieResponse;
+import Model.ModelTMDB.MovieResponseResults;
+import RetrofitClient.RetrofitClientDBInterno;
+import RetrofitClient.RetrofitClientTMDB;
+import RetrofitService.RetrofitServiceDBInterno;
+import RetrofitService.RetrofitServiceTMDB;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -19,72 +21,55 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import org.apache.commons.io.FileUtils;
+import org.example.BuildConfig;
 import org.jetbrains.annotations.NotNull;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import org.kairos.layouts.RecyclerView;
+import retrofit2.Call;
+import retrofit2.Response;
 
-import javax.imageio.ImageIO;
-import javax.swing.*;
-import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Base64;
-import java.util.BitSet;
+import java.util.List;
 import java.util.logging.Logger;
 
 public class Home_Controller extends Controller {
 
-    @FXML private ListView<DBModelSegnalazioni> ListeSegnalazioni;
-          private ObservableList<DBModelSegnalazioni> dbModelSegnalazioniObservableList = FXCollections.observableArrayList();
-    @FXML private Button closeButton;
-    @FXML private Button minimizeButton;
-    @FXML private Hyperlink LogOutLink;
-    @FXML private Hyperlink VisualizzaSegnalazioniLink;
-    @FXML private Hyperlink CambiaPasswdLink;
-    @FXML private Label NomeAdminLabel;
+    @FXML private RecyclerView ListeSegnalazioni;
+    @FXML private Button closeButton, minimizeButton;
+    @FXML private Hyperlink LogOutLink, VisualizzaSegnalazioniLink, CambiaPasswdLink, ConsigliaAgliUtenti;
+    @FXML private Label NomeAdminLabel, ErroreSuccesso;
     @FXML private ImageView FotoProfiloAdmin;
-          private String Image;
-          private Webb webb = Webb.create();
-          public static final String JSON_ARRAY = "dbdata";
+          private SegnalazioniAdapter segnalazioniAdapter;
+          private RetrofitServiceDBInterno retrofitServiceDBInterno;
+          private RetrofitServiceTMDB retrofitServiceTMDB;
+          private List<Integer> id = new ArrayList<>();
+
+          private static List<Integer> passggiodilista = new ArrayList<>();
+
+          public static List<Integer> getListadiID() { return passggiodilista; }
+
+          public void setListadiID(List<Integer> myVariable) { this.passggiodilista = myVariable; }
 
     @Override public void initialize(){
         NomeAdminLabel.setText(NomeAdminLabel.getText() + LogIn_Controller.getNomeAdmin());
-        try {
-            JSONObject response = webb.post("http://192.168.178.48/cinematesdb/PrendiFotoProfiloAdimn.php").param("Email_Admin", NomeAdminLabel.getText().toString()).retry(1, false).asJsonObject().getBody();
-            JSONArray array = response.getJSONArray(JSON_ARRAY);
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject object = array.getJSONObject(i);
-                Image = object.getString("Foto_Profilo");
-            }
-            if(!(Image.equals("null"))){
-                FotoProfiloAdmin.setImage(new Image("http://192.168.178.48/cinematesdb/" +  Image));
-            }else{
-                FotoProfiloAdmin.setImage(new Image("/images/businessman.png"));
-            }
-        } catch (JSONException e) {
-            e.printStackTrace();
+        retrofitServiceDBInterno = RetrofitClientDBInterno.getClient().create(RetrofitServiceDBInterno.class);
+        retrofitServiceTMDB = RetrofitClientTMDB.getClient().create(RetrofitServiceTMDB.class);
+        CercaSegnalazioni();
+        if(LogIn_Controller.getFotoAdmin() != null){
+            FotoProfiloAdmin.setImage(new Image(LogIn_Controller.getFotoAdmin()));
+        }else{
+            FotoProfiloAdmin.setImage(new Image("/images/businessman.png"));
         }
         Eventi();
-        ListeSegnalazioni.setItems(CercaSegnalazioni());
-        ListeSegnalazioni.setCellFactory(new Callback<ListView<DBModelSegnalazioni>, ListCell<DBModelSegnalazioni>>() {
-            @Override public ListCell<DBModelSegnalazioni> call(ListView<DBModelSegnalazioni> param) {
-                return new DBModelSegnalazioniListViewCell();
-            }
-        });
+
     }
     @Override public void Eventi() {
         closeButton.setOnMouseClicked(this::ButtonCloseClicked);
@@ -93,9 +78,53 @@ public class Home_Controller extends Controller {
         CambiaPasswdLink.setOnMouseClicked(this::CambiaPasswdLinkClicked);
         LogOutLink.setOnMouseClicked(this::LogOutLinkClicked);
         FotoProfiloAdmin.setOnMouseClicked(this::FotoProfiloClicked);
-
+        ConsigliaAgliUtenti.setOnMouseClicked(this::ConsigliaAgliUtentiClicked);
     }
 
+    private void ConsigliaAgliUtentiClicked(MouseEvent event) {
+        Stage stage = (Stage)  ConsigliaAgliUtenti.getScene().getWindow();
+        Call<MovieResponse> topratedCall = retrofitServiceTMDB.GetPopular(BuildConfig.THE_MOVIE_DB_APY_KEY, "it-IT");
+        topratedCall.enqueue(new retrofit2.Callback<MovieResponse>() {
+            @Override public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                MovieResponse movieResponse = response.body();
+                if(movieResponse != null){
+                    List<MovieResponseResults> resultsList = movieResponse.getResults();
+                    for (int i = 0; i < resultsList.size(); i++){
+                        id.add(resultsList.get(i).getId());
+                    }
+                    setListadiID(id);
+                    Platform.runLater(new Runnable() {
+                        @Override public void run() {
+                            stage.close();
+                            Node source = (Node)  event.getSource();
+                            Stage primaryStage  = (Stage) source.getScene().getWindow();
+                            Consiglia(primaryStage);
+                        }
+                    });
+                }
+            }
+            @Override public void onFailure(Call<MovieResponse> call, Throwable t) {
+
+            }
+        });
+    }
+
+    private void Consiglia(Stage primaryStage) {
+        Parent root = null;
+        try {
+            Platform.setImplicitExit(false);
+            primaryStage.hide();
+            root = FXMLLoader.load(ConsigliaAgliUtenti_Controller.class.getResource("/fxml/ConsigliaAgliUtenti.fxml"));
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            Stage newPrimaryStage = new Stage();
+            newPrimaryStage.initStyle(StageStyle.TRANSPARENT);
+            newPrimaryStage.setScene(scene);
+            newPrimaryStage.show();
+        } catch (IOException e) {
+            Logger.getLogger(Home_Controller.class.toString()).severe("main_view loading failed");
+        }
+    }
 
 
     private void FotoProfiloClicked(MouseEvent mouseEvent) {
@@ -108,10 +137,39 @@ public class Home_Controller extends Controller {
                     FotoProfiloAdmin.setImage(new Image(url.toExternalForm()));
                     byte[] fileContent = FileUtils.readFileToByteArray(files);
                     String encodedString = Base64.getEncoder().encodeToString(fileContent);
-                    webb.post("http://192.168.178.48/cinematesdb/CambiaFotoProfiloAdimn.php").param("Email_Admin", NomeAdminLabel.getText().toString()).param("nome", encodedString).ensureSuccess().asVoid();
-                    Node source = (Node) mouseEvent.getSource();
-                    Stage primaryStage = (Stage) source.getScene().getWindow();
-                    VisualizzaSegnalazioni(primaryStage);
+                    Call<DBModelResponseToInsert> insertCall = retrofitServiceDBInterno.CambiaFotoProfiloAdimn(NomeAdminLabel.getText().toString(), encodedString);
+                    insertCall.enqueue(new retrofit2.Callback<DBModelResponseToInsert>() {
+                        @Override public void onResponse(@NotNull Call<DBModelResponseToInsert> call,@NotNull Response<DBModelResponseToInsert> response) {
+                            DBModelResponseToInsert dbModelResponseToInsert = response.body();
+                            if(dbModelResponseToInsert != null){
+                                if(dbModelResponseToInsert.getStato().equals("Successfull")){
+                                    ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                                    ErroreSuccesso.setTextFill(Color.GREEN);
+                                    ErroreSuccesso.setText("Foto cambiata con successo.");
+                                }else{
+                                    ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                                    ErroreSuccesso.setTextFill(Color.RED);
+                                    ErroreSuccesso.setText("Errore: La foto non verra' aggiornata.");
+                                }
+                            }else{
+                                ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                                ErroreSuccesso.setTextFill(Color.RED);
+                                ErroreSuccesso.setText("Errore: Impossibile aggiornare foto.");
+                            }
+                        }
+                        @Override public void onFailure(@NotNull Call<DBModelResponseToInsert> call,@NotNull Throwable t) {
+                            ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                            ErroreSuccesso.setTextFill(Color.RED);
+                            ErroreSuccesso.setText("Ops qualcosa e' andato storto.");
+                        }
+                    });
+                    Platform.runLater(new Runnable() {
+                        @Override public void run() {
+                            Node source = (Node) mouseEvent.getSource();
+                            Stage primaryStage = (Stage) source.getScene().getWindow();
+                            VisualizzaSegnalazioni(primaryStage);
+                        }
+                    });
                 }
             } catch (Exception e) {
                 e.printStackTrace();
@@ -121,7 +179,8 @@ public class Home_Controller extends Controller {
     @FXML private void ButtonCloseClicked(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-        Platform.setImplicitExit(true);
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML private void ButtonMinimizeClicked(MouseEvent event) {
@@ -156,7 +215,6 @@ public class Home_Controller extends Controller {
 
     private void  VisualizzaSegnalazioni(@NotNull Stage primaryStage) {
         Parent root = null;
-        dbModelSegnalazioniObservableList.clear();
         try {
             Platform.setImplicitExit(false);
             primaryStage.hide();
@@ -171,8 +229,6 @@ public class Home_Controller extends Controller {
             Logger.getLogger(Home_Controller.class.toString()).severe("main_view loading failed");
         }
     }
-
-
 
     private void  CambiaPasswd(@NotNull Stage primaryStage) {
         Parent root = null;
@@ -191,28 +247,50 @@ public class Home_Controller extends Controller {
         }
     }
 
-    public ObservableList<DBModelSegnalazioni> CercaSegnalazioni() {
-        Webb webb = Webb.create();
-        JSONObject response = webb.post("http://192.168.178.48/cinematesdb/CercaSegnalazioni.php").retry(1, false).asJsonObject().getBody();
-        try {
-            JSONArray array = response.getJSONArray(JSON_ARRAY);
-            for (int i = 0; i < array.length(); i++) {
-                JSONObject object = array.getJSONObject(i);
-                String str_id = object.getString("Id_Segnalazione");
-                String UserSegnalato = object.getString("UserSegnalato");
-                String UserSegnalatore = object.getString("UserSegnalatore");
-                String Motivazione = object.getString("Motivazione");
-                String TitoloFilm = object.getString("Titolo_Film");
-                String TestoRecensione = object.getString("Testo_Recensione");
-                String FotoProfilo = object.getString("Foto_Profilo");
-                Integer Id_Segnalazione = Integer.valueOf(str_id);
-                DBModelSegnalazioni dbModelSegnalazioni = new DBModelSegnalazioni(Id_Segnalazione, UserSegnalato, UserSegnalatore, Motivazione, TitoloFilm, TestoRecensione, FotoProfilo);
-                dbModelSegnalazioniObservableList.add(dbModelSegnalazioni);
+    public void CercaSegnalazioni() {
+        Call<DBModelVerifica> verificaCall = retrofitServiceDBInterno.VerificaSeCiSonoSegnalazioni(LogIn_Controller.getNomeAdmin());
+        verificaCall.enqueue(new retrofit2.Callback<DBModelVerifica>() {
+            @Override public void onResponse(@NotNull Call<DBModelVerifica> call,@NotNull Response<DBModelVerifica> response) {
+                DBModelVerifica dbModelVerifica = response.body();
+                if(dbModelVerifica != null){
+                    List<DBModelVerificaResults> verificaResults = dbModelVerifica.getResults();
+                    if(verificaResults.get(0).getCodVerifica() == 1){
+                        Call<DBModelSegnalazioni> segnalazioniCall = retrofitServiceDBInterno.CercaSegnalazioni(LogIn_Controller.getNomeAdmin());
+                        segnalazioniCall.enqueue(new retrofit2.Callback<DBModelSegnalazioni>() {
+                            @Override public void onResponse(@NotNull Call<DBModelSegnalazioni> call,@NotNull Response<DBModelSegnalazioni> response) {
+                                DBModelSegnalazioni dbModelSegnalazioni = response.body();
+                                if(dbModelSegnalazioni != null){
+                                    List<DBModelSegnalazioniResponce> segnalazioniResponces = dbModelSegnalazioni.getResult();
+                                    if(!(segnalazioniResponces.isEmpty())){
+                                        segnalazioniAdapter = new SegnalazioniAdapter();
+                                        ListeSegnalazioni.setAdapter(segnalazioniAdapter);
+                                        ListeSegnalazioni.getItems().addAll(segnalazioniResponces);
+                                    }
+                                }
+                            }
+                            @Override public void onFailure(@NotNull Call<DBModelSegnalazioni> call,@NotNull Throwable t) {
+                                ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                                ErroreSuccesso.setTextFill(Color.RED);
+                                ErroreSuccesso.setText("Ops qualcosa e'\nandato storto.");
+                            }
+                        });
+                    }else{
+                        ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                        ErroreSuccesso.setTextFill(Color.RED);
+                        ErroreSuccesso.setText("Attenzione:\nNon ci sono\nsegnalazioni.");
+                    }
+                }else{
+                    ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                    ErroreSuccesso.setTextFill(Color.RED);
+                    ErroreSuccesso.setText("Attenzione:\nNon ci sono\nsegnalazioni.");
+                }
             }
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        return dbModelSegnalazioniObservableList;
+            @Override public void onFailure(@NotNull Call<DBModelVerifica> call,@NotNull Throwable t) {
+                ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                ErroreSuccesso.setTextFill(Color.RED);
+                ErroreSuccesso.setText("Ops qualcosa e'\nandato storto.");
+            }
+        });
     }
 
     private void  LogOut(@NotNull Stage primaryStage) {
@@ -231,6 +309,4 @@ public class Home_Controller extends Controller {
             Logger.getLogger(Home_Controller.class.toString()).severe("main_view loading failed");
         }
     }
-
-
 }

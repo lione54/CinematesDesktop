@@ -16,6 +16,9 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -26,6 +29,26 @@ public class Welcome_Controller extends Controller{
     @FXML private Button SignInButton;
     @FXML private Button LogInButton;
     @FXML private Label Citazione;
+
+    private static String Username;
+    private static String Passwd;
+
+    public static String getUsername() {
+        return Username;
+    }
+
+    public void setUsername(String myVariable) {
+        this.Username = myVariable;
+    }
+
+    public static String getPasswd() {
+        return Passwd;
+    }
+
+    public void setPasswd(String myVariable) {
+        this.Passwd = myVariable;
+    }
+
     @Override public void initialize() {
         Eventi();
     }
@@ -40,7 +63,8 @@ public class Welcome_Controller extends Controller{
     @FXML private void ButtonCloseClicked(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
         stage.close();
-        Platform.setImplicitExit(true);
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML private void ButtonMinimizeClicked(MouseEvent event) {
@@ -73,11 +97,19 @@ public class Welcome_Controller extends Controller{
     }
 
     @FXML private void LogInButtonClicked(@NotNull MouseEvent event) {
+        File file = new File("Config.txt");
         Stage stage = (Stage) LogInButton.getScene().getWindow();
         stage.close();
         Node source = (Node) event.getSource();
         Stage primaryStage = (Stage) source.getScene().getWindow();
-        LogInStage(primaryStage);
+        if(file != null){
+            RememberMe rememberMe = RememberMe.getInfo();
+            setUsername(rememberMe.getUsername());
+            setPasswd(rememberMe.getPasswd());
+            LogInStage(primaryStage);
+        }else{
+            LogInStage(primaryStage);
+        }
     }
 
     private void LogInStage(@NotNull Stage primaryStage) {

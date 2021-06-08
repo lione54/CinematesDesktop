@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="ItemSegnalazioni" prefHeight="150.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:id="ItemSegnalazioni" prefHeight="150.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adapter.SegnalazioniAdapter">
    <children>
       <Label layoutX="23.0" layoutY="78.0" text="Ha segnalato la recensione di" textFill="DARKORANGE">
          <font>
@@ -27,7 +27,7 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="Motivazioni" layoutX="143.0" layoutY="97.0" prefHeight="18.0" prefWidth="267.0" textFill="DARKORANGE">
+      <Label fx:id="TitoloFilm" layoutX="143.0" layoutY="97.0" prefHeight="18.0" prefWidth="267.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>

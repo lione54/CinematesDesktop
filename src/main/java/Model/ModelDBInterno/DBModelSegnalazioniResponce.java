@@ -1,19 +1,28 @@
-package ModelData;
+package Model.ModelDBInterno;
 
-public class DBModelSegnalazioni {
+import com.google.gson.annotations.SerializedName;
 
+public class DBModelSegnalazioniResponce {
+
+    @SerializedName("Id_Segnalazione")
     private Integer Id_Segnalazione;
+    @SerializedName("UserSegnalato")
     private String UserSegnalato;
+    @SerializedName("UserSegnalatore")
     private String UserSegnalatore;
+    @SerializedName("Motivazione")
     private String Motivazione;
+    @SerializedName("Titolo_Film")
     private String Titolo_Film_Recensito;
+    @SerializedName("Testo_Recensione")
     private String Testo_Recensione;
+    @SerializedName("Foto_Profilo")
     private String FotoProfilo;
 
-    public DBModelSegnalazioni() {
+    public DBModelSegnalazioniResponce() {
     }
 
-    public DBModelSegnalazioni(Integer id_Segnalazione, String userSegnalato, String userSegnalatore, String motivazione, String titolo_Film_Recensito, String testo_Recensione, String fotoProfilo) {
+    public DBModelSegnalazioniResponce(Integer id_Segnalazione, String userSegnalato, String userSegnalatore, String motivazione, String titolo_Film_Recensito, String testo_Recensione, String fotoProfilo) {
         Id_Segnalazione = id_Segnalazione;
         UserSegnalato = userSegnalato;
         UserSegnalatore = userSegnalatore;
@@ -72,10 +81,16 @@ public class DBModelSegnalazioni {
     }
 
     public String getFotoProfilo() {
-        return FotoProfilo;
+        if(FotoProfilo == null){
+            return null;
+        }else{
+            String UrlBase = "http://192.168.1.9/cinematesdb/";
+            return UrlBase + FotoProfilo;
+        }
     }
 
     public void setFotoProfilo(String fotoProfilo) {
         FotoProfilo = fotoProfilo;
     }
+
 }

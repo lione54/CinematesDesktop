@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="416.0" prefWidth="319.0" styleClass="home_bg" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.RecuperaPasswd_Controller">
+   <children>
+      <Button fx:id="closeButton" layoutX="244.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
+      <Button fx:id="minimizeButton" layoutX="212.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="60.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/logocinemates.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="Conferma" layoutX="78.0" layoutY="362.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Conferma" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button fx:id="Annulla" layoutX="178.0" layoutY="362.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Button>
+      <VBox layoutX="27.0" layoutY="208.0" prefHeight="28.0" prefWidth="266.0" />
+      <Label layoutX="84.0" layoutY="139.0" prefHeight="18.0" prefWidth="152.0" text="Inserisci qui la tua email" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <TextField fx:id="Email" layoutX="27.0" layoutY="178.0" prefHeight="27.0" prefWidth="266.0" promptText="Email" styleClass="text_field" stylesheets="@../style/TextField.css">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="76.0" layoutY="236.0" prefHeight="18.0" prefWidth="168.0" text="Premi conferma per avere" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="96.0" layoutY="260.0" text="una nuova password" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Error" layoutX="27.0" layoutY="304.0" prefHeight="17.0" prefWidth="266.0" />
+   </children>
+</AnchorPane>

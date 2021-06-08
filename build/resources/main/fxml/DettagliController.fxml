@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="549.0" prefWidth="334.0" styleClass="home_bg" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dettagli_Controller">
+<AnchorPane prefHeight="549.0" prefWidth="334.0" styleClass="home_bg" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.Dettagli_Controller">
    <children>
       <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="67.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -13,42 +13,42 @@
          </image></ImageView>
       <Button fx:id="minimizeButton" layoutX="223.0" layoutY="25.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
       <Button fx:id="closeButton" layoutX="255.0" layoutY="25.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="but_close" stylesheets="@../style/Close.css" />
-      <Button fx:id="DeclinaButton" layoutX="180.0" layoutY="465.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Declina" textFill="DARKORANGE">
+      <Button fx:id="DeclinaButton" layoutX="180.0" layoutY="494.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Declina" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Button>
-      <Button fx:id="AccettaButton" layoutX="90.0" layoutY="465.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Accetta" textFill="DARKORANGE">
+      <Button fx:id="AccettaButton" layoutX="90.0" layoutY="494.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Accetta" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Button>
       <Label layoutX="121.0" layoutY="159.0" text="Utente Segnalato" textFill="DARKORANGE" />
       <Label layoutX="116.0" layoutY="210.0" text="Utente Segnalatore" textFill="DARKORANGE" />
-      <Label layoutX="141.0" layoutY="265.0" text="Titolo Film" textFill="DARKORANGE">
+      <Label layoutX="141.0" layoutY="261.0" text="Titolo Film" textFill="DARKORANGE">
          <font>
             <Font name="Calibri" size="12.0" />
          </font>
       </Label>
-      <Label layoutX="134.0" layoutY="317.0" text="Motivazione" textFill="DARKORANGE" />
-      <Label layoutX="122.0" layoutY="370.0" text="Testo Recensione" textFill="DARKORANGE" />
-      <Label fx:id="UtenteSegnalato" alignment="CENTER" layoutX="84.0" layoutY="183.0" prefHeight="0.0" prefWidth="167.0" textFill="DARKORANGE">
+      <Label layoutX="137.0" layoutY="319.0" text="Motivazione" textFill="DARKORANGE" />
+      <Label layoutX="121.0" layoutY="374.0" text="Testo Recensione" textFill="DARKORANGE" />
+      <Label fx:id="UtenteSegnalato" alignment="CENTER" layoutX="36.0" layoutY="183.0" prefHeight="17.0" prefWidth="267.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="UtenteSegnalatore" alignment="CENTER" layoutX="84.0" layoutY="225.0" prefHeight="38.0" prefWidth="167.0" textFill="DARKORANGE">
+      <Label fx:id="UtenteSegnalatore" alignment="CENTER" layoutX="34.0" layoutY="233.0" prefHeight="17.0" prefWidth="267.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="TitoloFilm" alignment="CENTER" layoutX="84.0" layoutY="275.0" prefHeight="38.0" prefWidth="167.0" textFill="DARKORANGE">
+      <Label fx:id="TitoloFilm" alignment="CENTER" layoutX="21.0" layoutY="275.0" prefHeight="38.0" prefWidth="293.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="Motivazione" alignment="CENTER" layoutX="85.0" layoutY="330.0" prefHeight="38.0" prefWidth="167.0" textFill="DARKORANGE">
+      <Label fx:id="Motivazione" alignment="CENTER" layoutX="21.0" layoutY="336.0" prefHeight="38.0" prefWidth="293.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>
-      <Label fx:id="TestoRecensione" alignment="CENTER" layoutX="85.0" layoutY="384.0" prefHeight="38.0" prefWidth="167.0" textFill="DARKORANGE">
+      <Label fx:id="TestoRecensione" alignment="CENTER" layoutX="34.0" layoutY="398.0" prefHeight="96.0" prefWidth="267.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="14.0" />
          </font></Label>

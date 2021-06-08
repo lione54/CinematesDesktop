@@ -1,14 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.text.Font?>
 <AnchorPane fx:id="SignIn" prefHeight="476.0" prefWidth="304.0" styleClass="signbg" stylesheets="@../style/HomeSignInbg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.SignIn_Controller">
     <children>
         <Button fx:id="minimizeButton" layoutX="199.0" layoutY="14.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="24.0" styleClass="bu_minimaze" stylesheets="@../style/Minimize.css" />
@@ -18,34 +14,29 @@
                 <Image url="@../images/logocinemates.png" />
             </image>
         </ImageView>
-        <Button fx:id="ConfermaButton" layoutX="70.0" layoutY="323.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
+        <Button fx:id="ConfermaButton" layoutX="78.0" layoutY="423.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
             <font>
                 <Font name="Calibri Bold" size="15.0" />
             </font>
         </Button>
-        <Button fx:id="AnnullaButton" layoutX="165.0" layoutY="324.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
+        <Button fx:id="AnnullaButton" layoutX="161.0" layoutY="424.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Annulla" textFill="DARKORANGE">
             <font>
                 <Font name="Calibri Bold" size="14.0" />
             </font>
         </Button>
-        <Label layoutX="36.0" layoutY="253.0" text="Email:" textFill="DARKORANGE">
+        <Label fx:id="Error" layoutX="69.0" layoutY="333.0" prefHeight="18.0" prefWidth="184.0" textFill="DARKORANGE">
             <font>
                 <Font name="Calibri Bold" size="15.0" />
             </font>
         </Label>
-        <TextField fx:id="Email" prefWidth="160.0" layoutX="85.0" layoutY="238.0" styleClass="text_field" stylesheets="@../style/TextField.css">
-            <font>
-                <Font name="Calibri Bold" size="15.0" />
-            </font>
-        </TextField>
-        <ImageView layoutX="250.0" layoutY="249.0">
-            <Image url="@../images/at.png" />
-        </ImageView>
-        <Label fx:id="Error" layoutX="80.0" layoutY="289.0" prefHeight="18.0" prefWidth="184.0" textFill="DARKORANGE">
-            <font>
-                <Font name="Calibri Bold" size="15.0" />
-            </font>
-        </Label>
+      <VBox layoutX="41.0" layoutY="223.0" prefHeight="25.0" prefWidth="228.0">
+         <children>
+              <TextField fx:id="Email" prefHeight="30.0" prefWidth="0.0" promptText="Email" styleClass="text_field" stylesheets="@../style/TextField.css">
+                  <font>
+                      <Font name="Calibri Bold" size="15.0" />
+                  </font>
+              </TextField>
+         </children>
+      </VBox>
     </children>
 </AnchorPane>
-

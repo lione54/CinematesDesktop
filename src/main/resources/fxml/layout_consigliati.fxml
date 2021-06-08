@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="ItemConsigliati" prefHeight="203.0" prefWidth="498.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fx:id="PosterFilm" fitHeight="152.0" fitWidth="106.0" layoutX="14.0" layoutY="26.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="126.0" layoutY="24.0" prefHeight="17.0" prefWidth="68.0" text="Titolo Film:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label fx:id="TitoloFilm" layoutX="203.0" layoutY="24.0" prefHeight="17.0" prefWidth="281.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="126.0" layoutY="72.0" text="Trama:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="Trama" layoutX="182.0" layoutY="54.0" prefHeight="55.0" prefWidth="281.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="126.0" layoutY="117.0" text="Data Di Usicta:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font></Label>
+      <Label fx:id="Release" layoutX="225.0" layoutY="118.0" prefHeight="17.0" prefWidth="214.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+      <Label layoutX="126.0" layoutY="157.0" text="Voto Medio:" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label fx:id="MediaVoto" layoutX="218.0" layoutY="158.0" prefHeight="17.0" prefWidth="214.0" textFill="DARKORANGE">
+         <font>
+            <Font name="Calibri Bold" size="14.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

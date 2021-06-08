@@ -1,6 +1,10 @@
 package Controller;
 
-import Adapter.DBModelSegnalazioniListViewCell;
+import Adapter.SegnalazioniAdapter;
+import Model.ModelDBInterno.DBModelResponseToInsert;
+import Model.ModelDBInterno.DBModelVerifica;
+import RetrofitClient.RetrofitClientDBInterno;
+import RetrofitService.RetrofitServiceDBInterno;
 import com.goebl.david.Webb;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -16,22 +20,26 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 import java.io.IOException;
 import java.util.logging.Logger;
 
 public class Dettagli_Controller extends Controller{
 
-    @FXML private Button closeButton, DeclinaButton;
-    @FXML private Button minimizeButton, AccettaButton;
+    @FXML private Button closeButton, DeclinaButton, minimizeButton, AccettaButton;
     @FXML private Label UtenteSegnalato, UtenteSegnalatore, Motivazione, TitoloFilm, TestoRecensione;
+    private RetrofitServiceDBInterno retrofitServiceDBInterno;
 
     @Override public void initialize() {
-        UtenteSegnalato.setText(DBModelSegnalazioniListViewCell.getUtenteSegnalato());
-        UtenteSegnalatore.setText(DBModelSegnalazioniListViewCell.getUtenteSegnalatore());
-        Motivazione.setText(DBModelSegnalazioniListViewCell.getMotivazione().replaceAll("-", " "));
-        TitoloFilm.setText(DBModelSegnalazioniListViewCell.getTitoloFilm());
-        TestoRecensione.setText(DBModelSegnalazioniListViewCell.getTestoRecensione());
+        UtenteSegnalato.setText(SegnalazioniAdapter.getUtenteSegnalato());
+        UtenteSegnalatore.setText(SegnalazioniAdapter.getUtenteSegnalatore());
+        Motivazione.setText(SegnalazioniAdapter.getMotivazione().replaceAll("-", " "));
+        TitoloFilm.setText(SegnalazioniAdapter.getTitoloFilm());
+        TestoRecensione.setText(SegnalazioniAdapter.getTestoRecensione());
+        retrofitServiceDBInterno = RetrofitClientDBInterno.getClient().create(RetrofitServiceDBInterno.class);
         Eventi();
     }
 
@@ -43,22 +51,52 @@ public class Dettagli_Controller extends Controller{
     }
 
     private void AccettaButtonClicked(MouseEvent mouseEvent) {
-        Webb webb = Webb.create();
-        webb.post("http://192.168.178.48/cinematesdb/AccettaSegnalazione.php").param("UtenteSegnalato", DBModelSegnalazioniListViewCell.getUtenteSegnalato()).param("UtenteSegnalatore", DBModelSegnalazioniListViewCell.getUtenteSegnalatore()).param("Id_Segnalazione", DBModelSegnalazioniListViewCell.getIdSegnalazione()).ensureSuccess().asVoid();
         Stage stage = (Stage)  AccettaButton.getScene().getWindow();
-        stage.close();
-        Node source = (Node)  mouseEvent.getSource();
-        Stage primaryStage  = (Stage) source.getScene().getWindow();
-        AzioneRiuscita(primaryStage);
+        Call<DBModelResponseToInsert> accettaCall = retrofitServiceDBInterno.AccettaSegnalazione(SegnalazioniAdapter.getUtenteSegnalato(), SegnalazioniAdapter.getUtenteSegnalatore(), SegnalazioniAdapter.getIdSegnalazione());
+        accettaCall.enqueue(new Callback<DBModelResponseToInsert>() {
+            @Override public void onResponse(@NotNull Call<DBModelResponseToInsert> call,@NotNull Response<DBModelResponseToInsert> response) {
+                DBModelResponseToInsert dbModelResponseToInsert = response.body();
+                if(dbModelResponseToInsert != null){
+                    if(dbModelResponseToInsert.getStato().equals("Successfull")){
+                        Platform.runLater(new Runnable() {
+                            @Override public void run() {
+                                stage.close();
+                                Node source = (Node)  mouseEvent.getSource();
+                                Stage primaryStage  = (Stage) source.getScene().getWindow();
+                                AzioneRiuscita(primaryStage);
+                            }
+                        });
+                    }
+                }
+            }
+            @Override public void onFailure(@NotNull Call<DBModelResponseToInsert> call,@NotNull Throwable t) {
+
+            }
+        });
     }
     private void DeclinaButtonClicked(MouseEvent mouseEvent) {
-        Webb webb = Webb.create();
-        webb.post("http://192.168.178.48/cinematesdb/DeclinaSengnalazione.php").param("UtenteSegnalato", DBModelSegnalazioniListViewCell.getUtenteSegnalato()).param("UtenteSegnalatore", DBModelSegnalazioniListViewCell.getUtenteSegnalatore()).param("Id_Segnalazione", DBModelSegnalazioniListViewCell.getIdSegnalazione()).ensureSuccess().asVoid();
         Stage stage = (Stage)  DeclinaButton.getScene().getWindow();
-        stage.close();
-        Node source = (Node)  mouseEvent.getSource();
-        Stage primaryStage  = (Stage) source.getScene().getWindow();
-        AzioneRiuscita(primaryStage);
+        Call<DBModelResponseToInsert> declinaCall = retrofitServiceDBInterno.DeclinaSengnalazione(SegnalazioniAdapter.getUtenteSegnalato(), SegnalazioniAdapter.getUtenteSegnalatore(), SegnalazioniAdapter.getIdSegnalazione());
+        declinaCall.enqueue(new Callback<DBModelResponseToInsert>() {
+            @Override public void onResponse(@NotNull Call<DBModelResponseToInsert> call,@NotNull Response<DBModelResponseToInsert> response) {
+                DBModelResponseToInsert dbModelResponseToInsert = response.body();
+                if(dbModelResponseToInsert != null){
+                    if(dbModelResponseToInsert.getStato().equals("Successfull")){
+                        Platform.runLater(new Runnable() {
+                            @Override public void run() {
+                                stage.close();
+                                Node source = (Node)  mouseEvent.getSource();
+                                Stage primaryStage  = (Stage) source.getScene().getWindow();
+                                AzioneRiuscita(primaryStage);
+                            }
+                        });
+                    }
+                }
+            }
+            @Override public void onFailure(@NotNull Call<DBModelResponseToInsert> call,@NotNull Throwable t) {
+
+            }
+        });
     }
 
     private void AzioneRiuscita(Stage primaryStage) {

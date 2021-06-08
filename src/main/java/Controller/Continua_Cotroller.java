@@ -43,8 +43,8 @@ public class Continua_Cotroller extends Controller{
 
     @FXML private void ButtonCloseClicked(MouseEvent event) {
         Stage stage = (Stage) closeButton.getScene().getWindow();
-        stage.close();
-        Platform.setImplicitExit(true);
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML private void ButtonMinimizeClicked(MouseEvent event) {
