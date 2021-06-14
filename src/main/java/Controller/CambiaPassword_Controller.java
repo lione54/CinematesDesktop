@@ -207,16 +207,11 @@ public class CambiaPassword_Controller extends Controller{
                                     if (dbModelResponseToInsert != null){
                                         if(dbModelResponseToInsert.getStato().equals("Successfull")){
                                             ErroreSuccesso.setFont(Font.font("Calibri", 15));
-                                            ErroreSuccesso.setTextFill(Color.GREEN);
-                                            ErroreSuccesso.setText("La Password e' stata cambiata.");
-                                            Platform.runLater(new Runnable() {
-                                                @Override public void run() {
-                                                    stage.close();
-                                                    Node source = (Node) mouseEvent.getSource();
-                                                    Stage primaryStage = (Stage) source.getScene().getWindow();
-                                                    CambiaPasswd(primaryStage);
-                                                }
-                                            });
+                                            ErroreSuccesso.setTextFill(Color.DARKGREEN);
+                                            ErroreSuccesso.setText("La Password e'\n stata cambiata.");
+                                            VecchiaPassword.clear();
+                                            NuovaPassword.clear();
+                                            ConfermaPassword.clear();
                                         }
                                     }
                                 }

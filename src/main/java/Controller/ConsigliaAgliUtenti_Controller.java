@@ -2,6 +2,7 @@ package Controller;
 
 
 import Adapter.ConsigliatiAdapter;
+import Email.SendEmail;
 import Model.ModelDBInterno.DBModelResponseToInsert;
 import Model.ModelDBInterno.DBModelUtenti;
 import Model.ModelDBInterno.DBModelUtentiResponce;
@@ -100,48 +101,34 @@ public class ConsigliaAgliUtenti_Controller extends Controller{
                     List<DBModelUtentiResponce> emailList = dbModelUtenti.getResults();
                     if(!(emailList.isEmpty())){
                         for (int i = 0; i < emailList.size(); i++){
-                            Properties properties = new Properties();
-                            properties.put("mail.smtp.auth","true");
-                            properties.put("mail.smtp.starttls.enable","true");
-                            properties.put("mail.smtp.host","smtp.gmail.com");
-                            properties.put("mail.smtp.port","587");
-                            Session session = Session.getInstance(properties, new javax.mail.Authenticator(){
-                                @Override protected PasswordAuthentication getPasswordAuthentication() {
-                                    return new PasswordAuthentication(BuildConfig.Username, BuildConfig.Passwd);
-                                }
-                            });
                             try {
-                                Message message = new MimeMessage(session);
-                                message.setFrom(new InternetAddress());
-                                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(emailList.get(i).getEmail()));
-                                message.setSubject("Film Consigliati Dagli Admin.");
-                                MimeMultipart multipart = new MimeMultipart("related");
-                                BodyPart textPart = new MimeBodyPart();
-                                String htmlText1 ="<center><img src=\"cid:image\"></center>" +
-                                        "<html><head><style>h1 {background-color: #FF8C00;padding: 15px; text-indent: 40px;} " +
-                                        "p {text-indent: 60px;}</style></head><body><h1>Consigliati Dagli Admin</h1> " +
-                                        "<p> Bentrovato " + emailList.get(i).getUsername() +" , i film riportati di seguito sono sono stati scelti dai nostri admin. </p>" +
-                                        "<p>Cordiali Saluti,\nIl Team di Cinemates." + "</p></div></body></html>";
-                                textPart.setContent(htmlText1, "text/html");
-                                multipart.addBodyPart(textPart);
-                                BodyPart imagePart = new MimeBodyPart();
-                                DataSource fds = new FileDataSource("C:/Users/matti/Desktop/CinematesDesktop/src/main/resources/images/logocinemates.png");
-                                imagePart.setDataHandler(new DataHandler(fds));
-                                imagePart.setHeader("Content-ID","<image>");
-                                imagePart.setDisposition(MimeBodyPart.INLINE);
-                                multipart.addBodyPart(imagePart);
-                                message.setContent(multipart);
-                                Transport.send(message);
-                            }catch (MessagingException e){
+                                StringBuffer htmlText = new StringBuffer("<!DOCTYPE html> <head> </head>");
+                                htmlText.append("<body style=\"background: #0e1111; padding: 0; margin: 0; font-family: verdana; color: #FF8C00;\" > <div style=\"display:flex\"> <img src=\"cid:image2\" style=\" background-repeat: no-repeat; position: left; height:100px; margin-left: 1%; width:64px;height:64px;margin-top: 18px;margin-left: 10px;\"> <img src=\"cid:image1\" style=\"background-repeat: no-repeat; padding: 0; left:0; display: block; margin: 0 auto; height:100px; width:260px;\"> </div>");
+                                htmlText.append("<p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Caro " + emailList.get(i).getUsername() + ",</p> <p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">i film riportati di seguito sono sono stati scelti dai nostri admin per voi.</p> <ul style=\"list-style-type: none; padding: 0; margin: 0; margin-top: -1px; background-color: #0e1111; padding: 12px;\">");
+                                for(int j = 0; j < resultsList.size(); j++){
+                                    htmlText.append("<li style=\"display: flex; width: 100%; height: 300px; margin-bottom: 1%;\" > <img src=" + resultsList.get(j).getPoster_path() + " style=\" background-repeat: no-repeat; background-size:contain; height:300px; padding: 0; margin 0; left: 0; width: 30%;\"> <div style=\"display:block; width:100%;   background-image: linear-gradient(to right, #FF8C00 , #FF8C00);\"> <h1 style=\"color:#0e1111; margin-left: 1%;\">" + resultsList.get(j).getTitle() + "</h1> <p style=\"font-size:14px; color:#0e1111;margin-left: 1%;\">"+ resultsList.get(j).getOverview() +"</p> <p style=\"font-size:14px; color:#0e1111; margin-left: 1%;\">Vai nell'App Cinemates per ulteriori dettagli!</p> </div> </li> <li>");
+                                }
+                                htmlText.append("</ul> <p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Cordiali Saluti,</p><p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Lo staff di Cinemates.</p> </body> </html>");
+                                Map<String, String> inlineImages = new HashMap<String, String>();
+                                inlineImages.put("image1", BuildConfig.Logo_Email);
+                                inlineImages.put("image2", BuildConfig.Clapperboard_Image);
+                                SendEmail.send(BuildConfig.host, BuildConfig.port, BuildConfig.Username, BuildConfig.Passwd, emailList.get(i).getEmail(), "Film Consigliati dagli Admin.", htmlText.toString(), inlineImages, "Consigliati");
+                                ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                                ErroreSuccesso.setTextFill(Color.GREEN);
+                                ErroreSuccesso.setText("Email inviata\ncon successo.");
+                            }catch (MessagingException | IOException e){
                                 ErroreSuccesso.setFont(Font.font("Calibri", 15));
                                 ErroreSuccesso.setTextFill(Color.RED);
-                                ErroreSuccesso.setText("Errore: Invio email fallito");
+                                ErroreSuccesso.setText("Errore:\nInvio email fallito");
                             }
                         }
+                    }else{
+                        ErroreSuccesso.setFont(Font.font("Calibri", 15));
+                        ErroreSuccesso.setTextFill(Color.RED);
+                        ErroreSuccesso.setText("Ricarica la pagina");
                     }
                 }
             }
-
             @Override public void onFailure(@NotNull Call<DBModelUtenti> call,@NotNull Throwable t) {
 
             }

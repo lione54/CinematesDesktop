@@ -1,6 +1,7 @@
 package Controller;
 
 
+import Email.SendEmail;
 import Model.ModelDBInterno.DBModelResponseToInsert;
 import Model.ModelDBInterno.DBModelVerifica;
 import Model.ModelDBInterno.DBModelVerificaResults;
@@ -36,9 +37,7 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
-import java.util.List;
-import java.util.Properties;
-import java.util.Random;
+import java.util.*;
 import java.util.logging.Logger;
 
 
@@ -96,38 +95,14 @@ public class SignIn_Controller extends Controller {
                                     DBModelResponseToInsert responseToInsert = response.body();
                                     if(responseToInsert != null){
                                         if(responseToInsert.getStato().equals("Successfull")){
-                                            Properties properties = new Properties();
-                                            properties.put("mail.smtp.auth","true");
-                                            properties.put("mail.smtp.starttls.enable","true");
-                                            properties.put("mail.smtp.host","smtp.gmail.com");
-                                            properties.put("mail.smtp.port","587");
-                                            Session session = Session.getInstance(properties, new javax.mail.Authenticator(){
-                                                @Override protected PasswordAuthentication getPasswordAuthentication() {
-                                                    return new PasswordAuthentication(BuildConfig.Username, BuildConfig.Passwd);
-                                                }
-                                            });
                                             try {
-                                                Message message = new MimeMessage(session);
-                                                message.setFrom(new InternetAddress());
-                                                message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(email));
-                                                message.setSubject("Codice Per Verifica Email.");
-                                                MimeMultipart multipart = new MimeMultipart("related");
-                                                BodyPart textPart = new MimeBodyPart();
-                                                String htmlText ="<center><img src=\"cid:image\"></center>" +
-                                                        "<html><head><style>h1 {background-color: #FF8C00;padding: 15px; text-indent: 40px;} " +
-                                                        "p {text-indent: 60px;}</style></head><body><h1>Codice Per Verifica Email</h1> " +
-                                                        "<p> Benvenuto nuovo admin,questa e' la prima password generata per il suo primo accesso alle funzionalita' da admin le consigliamo di cambiarla dopo l'accesso. </p>" +
-                                                        "<p> Codice: " + Passwd + " .</p> <p>Cordiali Saluti,</p><p>Il Team di Cinemates." + "</p></div></body></html>";
-                                                textPart.setContent(htmlText, "text/html");
-                                                multipart.addBodyPart(textPart);
-                                                BodyPart imagePart = new MimeBodyPart();
-                                                DataSource fds = new FileDataSource("C:/Users/matti/Desktop/CinematesDesktop/src/main/resources/images/logocinemates.png");
-                                                imagePart.setDataHandler(new DataHandler(fds));
-                                                imagePart.setHeader("Content-ID","<image>");
-                                                imagePart.setDisposition(MimeBodyPart.INLINE);
-                                                multipart.addBodyPart(imagePart);
-                                                message.setContent(multipart);
-                                                Transport.send(message);
+                                                StringBuffer htmlText = new StringBuffer("<!DOCTYPE html> <head> </head>");
+                                                htmlText.append("<body style=\"background: #0e1111; padding: 0; margin: 0; font-family: verdana; color: #FF8C00;\" > <div style=\"display:flex\"> <img src=\"cid:image2\" style=\" background-repeat: no-repeat; position: left; height:100px; margin-left: 1%; width:64px;height:64px;margin-top: 18px;margin-left: 10px;\"> <img src=\"cid:image1\" style=\"background-repeat: no-repeat; padding: 0; left:0; display: block; margin: 0 auto; height:100px; width:260px;\"> </div>");
+                                                htmlText.append("<p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Benvenuto nuovo Admin,</p> <p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">questa e' la prima password generata in automatico dal nostro sistema per poter accedere alle funzionalita' di Admin.</p> <p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Le consigliamo, pertanto, di cambiarla una volta effettuato l'accesso</p> <p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Codice: " + Passwd + ".</p> <p style=\"font-family: verdana; color: #FF8C00;margin-left: 10px;\">Cordiali Saluti,</p><p>Lo staff di Cinemates.</p> </body> </html>");
+                                                Map<String, String> inlineImages = new HashMap<String, String>();
+                                                inlineImages.put("image1", BuildConfig.Logo_Email);
+                                                inlineImages.put("image2", BuildConfig.KeyLogo);
+                                                SendEmail.send(BuildConfig.host, BuildConfig.port, BuildConfig.Username, BuildConfig.Passwd, email, "Prima Password Per Admin.", htmlText.toString(), inlineImages, "null");
                                                 SignIn[0] = "Successfull";
                                                 Platform.runLater(new Runnable() {
                                                     @Override public void run() {
@@ -139,7 +114,7 @@ public class SignIn_Controller extends Controller {
                                                         }
                                                     }
                                                 });
-                                            }catch (MessagingException e){
+                                            }catch (MessagingException | IOException e){
                                                 Error.setFont(Font.font("Calibri", 15));
                                                 Error.setTextFill(Color.RED);
                                                 Error.setText("Errore: Invio email fallito");

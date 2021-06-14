@@ -30,7 +30,10 @@
                   <Font name="Calibri Bold" size="15.0" />
                </font>
             </Hyperlink>
-            <Label fx:id="ErroreSuccesso" layoutY="294.0" prefHeight="108.0" prefWidth="162.0" />
+            <Label fx:id="ErroreSuccesso" layoutY="294.0" prefHeight="108.0" prefWidth="162.0" textFill="DARKORANGE">
+               <font>
+                  <Font name="Calibri Bold" size="15.0" />
+               </font></Label>
          </children></Pane>
       <Pane prefHeight="50.0" prefWidth="695.0" styleClass="HomePanel" stylesheets="@../style/WelcomeHomebg.css">
          <children>

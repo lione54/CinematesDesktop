@@ -4,66 +4,34 @@ RetrofitClient/RetrofitClientDBInterno.java
  RetrofitClient.RetrofitClientDBInterno
 Model/ModelDBInterno/DBModelFoto.java
  Model.ModelDBInterno.DBModelFoto
+Controller/CambiaPassword_Controller.java
+ Controller.CambiaPassword_Controller
+ Controller.CambiaPassword_Controller$1
+ Controller.CambiaPassword_Controller$2
+ Controller.CambiaPassword_Controller$3
+ Controller.CambiaPassword_Controller$3$1
 Main/Welcome.java
  Main.Welcome
-RetrofitService/RetrofitServiceTMDB.java
- RetrofitService.RetrofitServiceTMDB
-RetrofitClient/RetrofitClientTMDB.java
- RetrofitClient.RetrofitClientTMDB
-Model/ModelDBInterno/DBModelVerifica.java
- Model.ModelDBInterno.DBModelVerifica
-Model/ModelDBInterno/DBModelFotoResponce.java
- Model.ModelDBInterno.DBModelFotoResponce
-Controller/LogOut_Controller.java
- Controller.LogOut_Controller
-Model/ModelDBInterno/DBModelVerificaResults.java
- Model.ModelDBInterno.DBModelVerificaResults
-Controller/RememberMe.java
- Controller.RememberMe
-Model/ModelDBInterno/DBModelSegnalazioni.java
- Model.ModelDBInterno.DBModelSegnalazioni
-Model/ModelDBInterno/DBModelResponseToInsert.java
- Model.ModelDBInterno.DBModelResponseToInsert
-Model/ModelTMDB/MovieResponseResults.java
- Model.ModelTMDB.MovieResponseResults
-Model/ModelDBInterno/DBModelSegnalazioniResponce.java
- Model.ModelDBInterno.DBModelSegnalazioniResponce
-Model/ModelTMDB/MovieLatest.java
- Model.ModelTMDB.MovieLatest
-Model/ModelTMDB/MovieResponse.java
- Model.ModelTMDB.MovieResponse
-Adapter/SegnalazioniAdapter.java
- Adapter.SegnalazioniAdapter
- Adapter.SegnalazioniAdapter$1
- Adapter.SegnalazioniAdapter$DataHolder
 Controller/Continua_Cotroller.java
  Controller.Continua_Cotroller
-Controller/Esito_Contoller.java
- Controller.Esito_Contoller
-Model/ModelDBInterno/DBModelUtentiResponce.java
- Model.ModelDBInterno.DBModelUtentiResponce
 Controller/LogIn_Controller.java
  Controller.LogIn_Controller
  Controller.LogIn_Controller$1
  Controller.LogIn_Controller$1$1
  Controller.LogIn_Controller$1$1$1
  Controller.LogIn_Controller$1$1$1$1
-Controller/Dettagli_Controller.java
- Controller.Dettagli_Controller
- Controller.Dettagli_Controller$1
- Controller.Dettagli_Controller$1$1
- Controller.Dettagli_Controller$2
- Controller.Dettagli_Controller$2$1
-Model/ModelDBInterno/DBModelUtenti.java
- Model.ModelDBInterno.DBModelUtenti
-Controller/RecuperaPasswd_Controller.java
- Controller.RecuperaPasswd_Controller
- Controller.RecuperaPasswd_Controller$1
- Controller.RecuperaPasswd_Controller$1$1
- Controller.RecuperaPasswd_Controller$1$1$1
- Controller.RecuperaPasswd_Controller$1$1$2
+Controller/LogOut_Controller.java
+ Controller.LogOut_Controller
+Model/ModelDBInterno/DBModelFotoResponce.java
+ Model.ModelDBInterno.DBModelFotoResponce
 RetrofitService/RetrofitServiceDBInterno.java
  RetrofitService.RetrofitServiceDBInterno
+Model/ModelDBInterno/DBModelVerificaResults.java
+ Model.ModelDBInterno.DBModelVerificaResults
+Controller/RememberMe.java
+ Controller.RememberMe
+Model/ModelDBInterno/DBModelSegnalazioni.java
+ Model.ModelDBInterno.DBModelSegnalazioni
 Controller/Home_Controller.java
  Controller.Home_Controller
  Controller.Home_Controller$1
@@ -72,28 +40,59 @@ Controller/Home_Controller.java
  Controller.Home_Controller$3
  Controller.Home_Controller$4
  Controller.Home_Controller$4$1
-Controller/ConsigliaAgliUtenti_Controller.java
- Controller.ConsigliaAgliUtenti_Controller
- Controller.ConsigliaAgliUtenti_Controller$1
- Controller.ConsigliaAgliUtenti_Controller$1$1
- Controller.ConsigliaAgliUtenti_Controller$2
- Controller.ConsigliaAgliUtenti_Controller$3
- Controller.ConsigliaAgliUtenti_Controller$4
-Controller/CambiaPassword_Controller.java
- Controller.CambiaPassword_Controller
- Controller.CambiaPassword_Controller$1
- Controller.CambiaPassword_Controller$2
- Controller.CambiaPassword_Controller$3
- Controller.CambiaPassword_Controller$3$1
- Controller.CambiaPassword_Controller$3$1$1
+Model/ModelDBInterno/DBModelVerifica.java
+ Model.ModelDBInterno.DBModelVerifica
 Adapter/ConsigliatiAdapter.java
  Adapter.ConsigliatiAdapter
  Adapter.ConsigliatiAdapter$DataHolder
+RetrofitService/RetrofitServiceTMDB.java
+ RetrofitService.RetrofitServiceTMDB
+Model/ModelTMDB/MovieResponse.java
+ Model.ModelTMDB.MovieResponse
+Model/ModelDBInterno/DBModelResponseToInsert.java
+ Model.ModelDBInterno.DBModelResponseToInsert
+Model/ModelDBInterno/DBModelUtenti.java
+ Model.ModelDBInterno.DBModelUtenti
+Model/ModelTMDB/MovieLatest.java
+ Model.ModelTMDB.MovieLatest
+Controller/Esito_Contoller.java
+ Controller.Esito_Contoller
+Model/ModelTMDB/MovieResponseResults.java
+ Model.ModelTMDB.MovieResponseResults
+Adapter/SegnalazioniAdapter.java
+ Adapter.SegnalazioniAdapter
+ Adapter.SegnalazioniAdapter$1
+ Adapter.SegnalazioniAdapter$DataHolder
+Model/ModelDBInterno/DBModelSegnalazioniResponce.java
+ Model.ModelDBInterno.DBModelSegnalazioniResponce
+Controller/Welcome_Controller.java
+ Controller.Welcome_Controller
+RetrofitClient/RetrofitClientTMDB.java
+ RetrofitClient.RetrofitClientTMDB
+Controller/Dettagli_Controller.java
+ Controller.Dettagli_Controller
+ Controller.Dettagli_Controller$1
+ Controller.Dettagli_Controller$1$1
+ Controller.Dettagli_Controller$2
+ Controller.Dettagli_Controller$2$1
+Model/ModelDBInterno/DBModelUtentiResponce.java
+ Model.ModelDBInterno.DBModelUtentiResponce
+Controller/ConsigliaAgliUtenti_Controller.java
+ Controller.ConsigliaAgliUtenti_Controller
+ Controller.ConsigliaAgliUtenti_Controller$1
+ Controller.ConsigliaAgliUtenti_Controller$2
+ Controller.ConsigliaAgliUtenti_Controller$3
+ Controller.ConsigliaAgliUtenti_Controller$4
+Controller/RecuperaPasswd_Controller.java
+ Controller.RecuperaPasswd_Controller
+ Controller.RecuperaPasswd_Controller$1
+ Controller.RecuperaPasswd_Controller$1$1
+ Controller.RecuperaPasswd_Controller$1$1$1
+Email/SendEmail.java
+ Email.SendEmail
+ Email.SendEmail$1
 Controller/SignIn_Controller.java
  Controller.SignIn_Controller
  Controller.SignIn_Controller$1
  Controller.SignIn_Controller$1$1
  Controller.SignIn_Controller$1$1$1
- Controller.SignIn_Controller$1$1$2
-Controller/Welcome_Controller.java
- Controller.Welcome_Controller

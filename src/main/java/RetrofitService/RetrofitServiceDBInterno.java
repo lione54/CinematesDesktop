@@ -37,7 +37,7 @@ public interface RetrofitServiceDBInterno {
     Call<DBModelSegnalazioni> CercaSegnalazioni(@Field("Email_Admin") String EmailAdmin);
 
     @FormUrlEncoded
-    @POST("RecuperoPasswd.php")
+    @POST("RecuperoPasswdAdmin.php")
     Call<DBModelResponseToInsert> RecuperoPasswd(@Field("Email_Admin") String EmailAdmin, @Field("Psw_Admin") String PswAdmin);
 
     @FormUrlEncoded
@@ -54,5 +54,5 @@ public interface RetrofitServiceDBInterno {
 
     @FormUrlEncoded
     @POST("PrendiEmailUtenti.php")
-    Call<DBModelUtenti> PrendiEmailUtenti(@Field("Email_Admin") String UtenteSegnalato);
+    Call<DBModelUtenti> PrendiEmailUtenti(@Field("Email_Admin") String Email_Admin);
 }
