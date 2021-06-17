@@ -1,6 +1,7 @@
 package Model.ModelDBInterno;
 
 import com.google.gson.annotations.SerializedName;
+import org.example.BuildConfig;
 
 public class DBModelFotoResponce {
 
@@ -18,7 +19,7 @@ public class DBModelFotoResponce {
         if(Foto_Profilo == null){
             return null;
         }else{
-            String UrlBase = "http://192.168.1.9/cinematesdb/";
+            String UrlBase = "http://" + BuildConfig.IP_AWS + "/cinematesdb/";
             return UrlBase + Foto_Profilo;
         }
     }
