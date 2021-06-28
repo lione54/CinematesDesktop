@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="ItemSegnalazioni" prefHeight="150.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Adapter.SegnalazioniAdapter">
+<AnchorPane fx:id="ItemSegnalazioni" prefHeight="150.0" prefWidth="405.0" styleClass="HomePanel2" stylesheets="@../style/WelcomeHomebg.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" >
    <children>
       <Label layoutX="23.0" layoutY="78.0" text="Ha segnalato la recensione di" textFill="DARKORANGE">
          <font>
@@ -27,12 +27,12 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Label fx:id="TitoloFilm" layoutX="143.0" layoutY="97.0" prefHeight="18.0" prefWidth="267.0" textFill="DARKORANGE">
+      <Label fx:id="TitoloFilmSegnalazione" layoutX="143.0" layoutY="97.0" prefHeight="18.0" prefWidth="267.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <ImageView fx:id="FotoProfilo" fitHeight="47.0" fitWidth="46.0" layoutX="23.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="FotoProfiloSegnalazione" fitHeight="47.0" fitWidth="46.0" layoutX="23.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="NomeUtenteSegnalatore" layoutX="89.0" layoutY="34.0" prefHeight="17.0" prefWidth="132.0" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />

@@ -12,11 +12,6 @@
                 <Image url="@../images/logocinemates.png" />
             </image>
         </ImageView>
-        <Label fx:id="Citazione" layoutX="139.0" layoutY="186.0" text="Citazione" textFill="DARKORANGE">
-            <font>
-                <Font name="Calibri Bold" size="15.0" />
-            </font>
-        </Label>
         <Button fx:id="SignInButton" layoutX="96.0" layoutY="484.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="64.0" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Sign In" textFill="DARKORANGE">
             <font>
                 <Font name="Calibri Bold" size="15.0" />

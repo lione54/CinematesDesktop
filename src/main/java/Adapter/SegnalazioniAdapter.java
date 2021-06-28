@@ -1,9 +1,7 @@
 package Adapter;
 
 import Controller.Dettagli_Controller;
-import Controller.Esito_Contoller;
 import Controller.Home_Controller;
-import Controller.LogIn_Controller;
 import Model.ModelDBInterno.DBModelSegnalazioniResponce;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -18,14 +16,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.kairos.layouts.RecyclerView;
 
-import java.awt.*;
 import java.io.IOException;
-import java.util.List;
 import java.util.logging.Logger;
 
 public class SegnalazioniAdapter extends RecyclerView.Adapter<SegnalazioniAdapter.DataHolder> {
@@ -41,12 +36,12 @@ public class SegnalazioniAdapter extends RecyclerView.Adapter<SegnalazioniAdapte
     @Override public void onBindViewHolder(SegnalazioniAdapter.DataHolder dataHolder, Object o) {
             DBModelSegnalazioniResponce dbModelSegnalazioniResponce = (DBModelSegnalazioniResponce) o;
             if(dbModelSegnalazioniResponce.getFotoProfilo() != null){
-                dataHolder.FotoProfilo.setImage(new Image(dbModelSegnalazioniResponce.getFotoProfilo()));
+                dataHolder.FotoProfiloSegnalazione.setImage(new Image(dbModelSegnalazioniResponce.getFotoProfilo()));
             }else{
-                dataHolder.FotoProfilo.setImage(new Image("/images/man-shape.png"));
+                dataHolder.FotoProfiloSegnalazione.setImage(new Image("/images/man-shape.png"));
             }
             dataHolder.NomeUtenteSegnalato.setText(dbModelSegnalazioniResponce.getUserSegnalato());
-            dataHolder.TitoloFilm.setText(dbModelSegnalazioniResponce.getTitolo_Film_Recensito());
+            dataHolder.TitoloFilmSegnalazione.setText(dbModelSegnalazioniResponce.getTitolo_Film_Recensito());
             dataHolder.NomeUtenteSegnalatore.setText(dbModelSegnalazioniResponce.getUserSegnalatore());
             dataHolder.VaiAiDettagli.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override public void handle(MouseEvent event) {
@@ -85,9 +80,9 @@ public class SegnalazioniAdapter extends RecyclerView.Adapter<SegnalazioniAdapte
 
     public class DataHolder extends RecyclerView.ViewHolder{
 
-        @FXML private ImageView FotoProfilo;
+        @FXML private ImageView FotoProfiloSegnalazione;
         @FXML private Label NomeUtenteSegnalato;
-        @FXML private Label TitoloFilm;
+        @FXML private Label TitoloFilmSegnalazione;
         @FXML private Label NomeUtenteSegnalatore;
         @FXML private Button VaiAiDettagli;
 
