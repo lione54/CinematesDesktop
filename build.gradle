@@ -32,10 +32,10 @@ buildConfig {
     def IP_AWS = "34.245.83.217"
     def host = "smtp.gmail.com"
     def port = "587";
-    def Logo_Email = "C:/Users/matti/Desktop/CinematesDesktop/src/main/resources/images/logocinemates.png"
-    def KeyLogo = "C:/Users/matti/Desktop/CinematesDesktop/src/main/resources/images/key.png"
-    def Clapperboard_Image = "C:/Users/matti/Desktop/CinematesDesktop/src/main/resources/images/clapperboard.png"
-    def Promozioni = "C:/Users/matti/Desktop/CinematesDesktop/src/main/resources/images/Promozioni.pdf"
+    def Logo_Email = "src/main/resources/images/logocinemates.png"
+    def KeyLogo = "src/main/resources/images/key.png"
+    def Clapperboard_Image = "src/main/resources/images/clapperboard.png"
+    def Promozioni = "src/main/resources/images/Promozioni.pdf"
     it.buildConfigField("String","THE_MOVIE_DB_APY_KEY",TheMovieDBApiKey)
     it.buildConfigField("String", "Username", Username)
     it.buildConfigField("String", "Passwd", Password)
