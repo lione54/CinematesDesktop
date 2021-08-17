@@ -26,7 +26,7 @@ public interface RetrofitServiceDBInterno {
 
     @FormUrlEncoded
     @POST("CambiaFotoProfiloAdimn.php")
-    Call<DBModelResponseToInsert> CambiaFotoProfiloAdimn(@Field("Email_Admin") String EmailAdmin, @Field("nome") String PswAdmin);
+    Call<DBModelResponseToInsert> CambiaFotoProfiloAdimn(@Field("Email_Admin") String EmailAdmin, @Field("nome") String Foto);
 
     @FormUrlEncoded
     @POST("VerificaSeCiSonoSegnalazioni.php")

@@ -103,7 +103,7 @@ public class RecuperaPasswd_Controller extends Controller{
                                                             stage.close();
                                                             Node source = (Node) event.getSource();
                                                             Stage primaryStage = (Stage) source.getScene().getWindow();
-                                                            LogInStage(primaryStage);
+                                                            ContinuaStage(primaryStage);
                                                         }
                                                     }
                                                 });
@@ -138,6 +138,23 @@ public class RecuperaPasswd_Controller extends Controller{
                     SignIn[0] = "Error";
                 }
             });
+        }
+    }
+
+    private void ContinuaStage(@NotNull Stage primaryStage) {
+        Parent root = null;
+        try {
+            Platform.setImplicitExit(false);
+            primaryStage.hide();
+            root = FXMLLoader.load(SignIn_Controller.class.getResource("/fxml/Continua.fxml"));
+            Scene scene = new Scene(root);
+            scene.setFill(Color.TRANSPARENT);
+            Stage newPrimaryStage = new Stage();
+            newPrimaryStage.initStyle(StageStyle.TRANSPARENT);
+            newPrimaryStage.setScene(scene);
+            newPrimaryStage.show();
+        } catch (IOException e) {
+            Logger.getLogger(SignIn_Controller.class.toString()).severe("main_view loading failed");
         }
     }
 

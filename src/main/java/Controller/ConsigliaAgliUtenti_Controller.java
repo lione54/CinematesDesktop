@@ -307,11 +307,15 @@ public class ConsigliaAgliUtenti_Controller extends Controller{
     }
 
     private void PreparareConsigliati(){
-        int id = generateRandom();
-        while(id > Home_Controller.getListadiID().size()){
-            id = generateRandom();
+        int posizione = 0, id = 0;
+        if(!(Home_Controller.getListadiID().isEmpty())){
+            posizione = generateRandom(Home_Controller.getListadiID().size());
+            id=Home_Controller.getListadiID().get(posizione);
+        }else if(!(CambiaPassword_Controller.getListadiID().isEmpty())){
+            posizione = generateRandom(CambiaPassword_Controller.getListadiID().size());
+            id = CambiaPassword_Controller.getListadiID().get(posizione);
         }
-        Call<MovieResponse> racomandedCall = retrofitServiceTMDB.Similar(Home_Controller.getListadiID().get(id), BuildConfig.THE_MOVIE_DB_APY_KEY, "it-IT");
+        Call<MovieResponse> racomandedCall = retrofitServiceTMDB.Similar(id, BuildConfig.THE_MOVIE_DB_APY_KEY, "it-IT");
         racomandedCall.enqueue(new Callback<MovieResponse>() {
             @Override public void onResponse(@NotNull Call<MovieResponse> call,@NotNull Response<MovieResponse> response) {
                 MovieResponse movieResponse = response.body();
@@ -336,8 +340,8 @@ public class ConsigliaAgliUtenti_Controller extends Controller{
         });
     }
 
-    public int generateRandom() {
+    public int generateRandom(int max) {
         Random r = new Random( System.currentTimeMillis() );
-        return r.nextInt(99);
+        return r.nextInt(max);
     }
 }

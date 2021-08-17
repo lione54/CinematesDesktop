@@ -39,7 +39,7 @@
             <Font name="Calibri Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="58.0" layoutY="274.0" text="ha effettuato il primo accesso." textFill="DARKORANGE">
+      <Label layoutX="78.0" layoutY="274.0" text="ha effettuato l' accesso." textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font>

@@ -3,8 +3,12 @@ package Controller;
 import Model.ModelDBInterno.DBModelResponseToInsert;
 import Model.ModelDBInterno.DBModelVerifica;
 import Model.ModelDBInterno.DBModelVerificaResults;
+import Model.ModelTMDB.MovieResponse;
+import Model.ModelTMDB.MovieResponseResults;
 import RetrofitClient.RetrofitClientDBInterno;
+import RetrofitClient.RetrofitClientTMDB;
 import RetrofitService.RetrofitServiceDBInterno;
+import RetrofitService.RetrofitServiceTMDB;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,6 +28,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.commons.io.FileUtils;
+import org.example.BuildConfig;
 import org.jetbrains.annotations.NotNull;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -32,6 +37,7 @@ import retrofit2.Response;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Base64;
 import java.util.List;
 import java.util.logging.Logger;
@@ -49,6 +55,14 @@ public class CambiaPassword_Controller extends Controller{
     @FXML private PasswordField VecchiaPassword, NuovaPassword, ConfermaPassword;
     @FXML private Label ErroreSuccesso;
     private RetrofitServiceDBInterno retrofitServiceDBInterno;
+    private RetrofitServiceTMDB retrofitServiceTMDB;
+    private List<Integer> id = new ArrayList<>();
+
+    private static List<Integer> passggiodilista = new ArrayList<>();
+
+    public static List<Integer> getListadiID() { return passggiodilista; }
+
+    public void setListadiID(List<Integer> myVariable) { this.passggiodilista = myVariable; }
 
     @Override public void initialize() {
         NomeAdminLabel.setText(NomeAdminLabel.getText() + LogIn_Controller.getNomeAdmin());
@@ -58,6 +72,7 @@ public class CambiaPassword_Controller extends Controller{
             FotoProfiloAdmin.setImage(new Image("/images/businessman.png"));
         }
         retrofitServiceDBInterno = RetrofitClientDBInterno.getClient().create(RetrofitServiceDBInterno.class);
+        retrofitServiceTMDB = RetrofitClientTMDB.getClient().create(RetrofitServiceTMDB.class);
         Eventi();
     }
 
@@ -124,10 +139,30 @@ public class CambiaPassword_Controller extends Controller{
 
     private void ConsigliaAgliUtentiClicked(MouseEvent event) {
         Stage stage = (Stage)  ConsigliaAgliUtenti.getScene().getWindow();
-        stage.close();
-        Node source = (Node)  event.getSource();
-        Stage primaryStage  = (Stage) source.getScene().getWindow();
-        Consiglia(primaryStage);
+        Call<MovieResponse> topratedCall = retrofitServiceTMDB.GetPopular(BuildConfig.THE_MOVIE_DB_APY_KEY, "it-IT");
+        topratedCall.enqueue(new retrofit2.Callback<MovieResponse>() {
+            @Override public void onResponse(Call<MovieResponse> call, Response<MovieResponse> response) {
+                MovieResponse movieResponse = response.body();
+                if(movieResponse != null){
+                    List<MovieResponseResults> resultsList = movieResponse.getResults();
+                    for (int i = 0; i < resultsList.size(); i++){
+                        id.add(resultsList.get(i).getId());
+                    }
+                    setListadiID(id);
+                    Platform.runLater(new Runnable() {
+                        @Override public void run() {
+                            stage.close();
+                            Node source = (Node)  event.getSource();
+                            Stage primaryStage  = (Stage) source.getScene().getWindow();
+                            Consiglia(primaryStage);
+                        }
+                    });
+                }
+            }
+            @Override public void onFailure(Call<MovieResponse> call, Throwable t) {
+
+            }
+        });
     }
 
     private void Consiglia(Stage primaryStage) {
