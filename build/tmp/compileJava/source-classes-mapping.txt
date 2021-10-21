@@ -4,8 +4,14 @@ RetrofitClient/RetrofitClientDBInterno.java
  RetrofitClient.RetrofitClientDBInterno
 Model/ModelDBInterno/DBModelFoto.java
  Model.ModelDBInterno.DBModelFoto
-Main/Welcome.java
- Main.Welcome
+Controller/CambiaPassword_Controller.java
+ Controller.CambiaPassword_Controller
+ Controller.CambiaPassword_Controller$1
+ Controller.CambiaPassword_Controller$2
+ Controller.CambiaPassword_Controller$3
+ Controller.CambiaPassword_Controller$3$1
+ Controller.CambiaPassword_Controller$4
+ Controller.CambiaPassword_Controller$4$1
 Email/SendEmail.java
  Email.SendEmail
  Email.SendEmail$1
@@ -29,17 +35,25 @@ Controller/RememberMe.java
  Controller.RememberMe
 Model/ModelDBInterno/DBModelSegnalazioni.java
  Model.ModelDBInterno.DBModelSegnalazioni
+Controller/Home_Controller.java
+ Controller.Home_Controller
+ Controller.Home_Controller$1
+ Controller.Home_Controller$1$1
+ Controller.Home_Controller$2
+ Controller.Home_Controller$3
+ Controller.Home_Controller$4
+ Controller.Home_Controller$4$1
+Controller/ConsigliaAgliUtenti_Controller.java
+ Controller.ConsigliaAgliUtenti_Controller
+ Controller.ConsigliaAgliUtenti_Controller$1
+ Controller.ConsigliaAgliUtenti_Controller$2
+ Controller.ConsigliaAgliUtenti_Controller$3
+ Controller.ConsigliaAgliUtenti_Controller$4
 Controller/RecuperaPasswd_Controller.java
  Controller.RecuperaPasswd_Controller
  Controller.RecuperaPasswd_Controller$1
  Controller.RecuperaPasswd_Controller$1$1
  Controller.RecuperaPasswd_Controller$1$1$1
-Adapter/SegnalazioniAdapter.java
- Adapter.SegnalazioniAdapter
- Adapter.SegnalazioniAdapter$1
- Adapter.SegnalazioniAdapter$DataHolder
-Model/ModelDBInterno/DBModelVerifica.java
- Model.ModelDBInterno.DBModelVerifica
 RetrofitService/RetrofitServiceTMDB.java
  RetrofitService.RetrofitServiceTMDB
 Model/ModelTMDB/MovieResponse.java
@@ -73,28 +87,14 @@ Controller/Dettagli_Controller.java
  Controller.Dettagli_Controller$2$1
 Model/ModelDBInterno/DBModelUtentiResponce.java
  Model.ModelDBInterno.DBModelUtentiResponce
-Controller/Home_Controller.java
- Controller.Home_Controller
- Controller.Home_Controller$1
- Controller.Home_Controller$1$1
- Controller.Home_Controller$2
- Controller.Home_Controller$3
- Controller.Home_Controller$4
- Controller.Home_Controller$4$1
-Controller/ConsigliaAgliUtenti_Controller.java
- Controller.ConsigliaAgliUtenti_Controller
- Controller.ConsigliaAgliUtenti_Controller$1
- Controller.ConsigliaAgliUtenti_Controller$2
- Controller.ConsigliaAgliUtenti_Controller$3
- Controller.ConsigliaAgliUtenti_Controller$4
-Controller/CambiaPassword_Controller.java
- Controller.CambiaPassword_Controller
- Controller.CambiaPassword_Controller$1
- Controller.CambiaPassword_Controller$2
- Controller.CambiaPassword_Controller$3
- Controller.CambiaPassword_Controller$3$1
- Controller.CambiaPassword_Controller$4
- Controller.CambiaPassword_Controller$4$1
+Adapter/SegnalazioniAdapter.java
+ Adapter.SegnalazioniAdapter
+ Adapter.SegnalazioniAdapter$1
+ Adapter.SegnalazioniAdapter$DataHolder
+Main/Welcome.java
+ Main.Welcome
 Adapter/ConsigliatiAdapter.java
  Adapter.ConsigliatiAdapter
  Adapter.ConsigliatiAdapter$DataHolder
+Model/ModelDBInterno/DBModelVerifica.java
+ Model.ModelDBInterno.DBModelVerifica

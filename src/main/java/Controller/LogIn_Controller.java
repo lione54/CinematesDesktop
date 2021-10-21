@@ -121,91 +121,94 @@ public class LogIn_Controller extends Controller{
 
     @FXML private void LogInButtonClicked(MouseEvent event){
         Stage stage = (Stage) LogInButton.getScene().getWindow();
-        final String [] LogIn = {null};
         String email = Email.getText().toString();
         String Password = Passwd.getText().toString();
         if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}"))) {
             Error.setFont(Font.font("Calibri", 15));
             Error.setTextFill(Color.RED);
             Error.setText("Errore: Email Non Valida.");
-            LogIn[0] = "Error";
         }else{
-            Call<DBModelVerifica> verificaCall = retrofitServiceDBInterno.VerificaEsistenzaAdmin(email);
-            verificaCall.enqueue(new Callback<DBModelVerifica>() {
-                @Override public void onResponse(@NotNull Call<DBModelVerifica> call,@NotNull Response<DBModelVerifica> response) {
-                    DBModelVerifica dbModelVerifica = response.body();
-                    if(dbModelVerifica != null) {
-                        List<DBModelVerificaResults> verificaResults = dbModelVerifica.getResults();
-                        if(verificaResults.get(0).getCodVerifica() == 1) {
-                            Call<DBModelVerifica> dbModelVerificaCall = retrofitServiceDBInterno.VerificaPasswdAdmin(email, Password);
-                            dbModelVerificaCall.enqueue(new Callback<DBModelVerifica>() {
-                                @Override public void onResponse(@NotNull Call<DBModelVerifica> call,@NotNull Response<DBModelVerifica> response) {
-                                    DBModelVerifica dbModelVerifica1 = response.body();
-                                    if(dbModelVerifica1 != null) {
-                                        List<DBModelVerificaResults> verificaResultsList = dbModelVerifica1.getResults();
-                                        if(verificaResultsList.get(0).getCodVerifica() == 1) {
-                                            Call<DBModelFoto> fotoCall = retrofitServiceDBInterno.PrendiFotoAdmin(email, Password);
-                                            fotoCall.enqueue(new Callback<DBModelFoto>() {
-                                                @Override public void onResponse(@NotNull Call<DBModelFoto> call,@NotNull Response<DBModelFoto> response) {
-                                                    DBModelFoto dbModelFoto = response.body();
-                                                    if(dbModelFoto != null){
-                                                        List<DBModelFotoResponce> fotoResponces = dbModelFoto.getResult();
-                                                        setNomeAdmin(email);
-                                                        setFotoAdmin(fotoResponces.get(0).getFoto_Profilo());
-                                                        LogIn[0] = "Successfull";
-                                                        if(Ricordami.isSelected()){
-                                                            RememberMe.Config(email, Password);
-                                                        }
-                                                        Platform.runLater(new Runnable() {
-                                                            @Override public void run() {
-                                                                if(LogIn[0].equals("Successfull")) {
-                                                                    stage.close();
-                                                                    Node source = (Node) event.getSource();
-                                                                    Stage primaryStage = (Stage) source.getScene().getWindow();
-                                                                    HomeStage(primaryStage);
-                                                                }
-                                                            }
-                                                        });
+            LogIn(stage, event, email, Password);
+        }
+    }
+
+    private void LogIn(Stage stage, MouseEvent event, String email, String password) {
+        final String [] LogIn = {null};
+        Call<DBModelVerifica> verificaCall = retrofitServiceDBInterno.VerificaEsistenzaAdmin(email);
+        verificaCall.enqueue(new Callback<DBModelVerifica>() {
+            @Override public void onResponse(@NotNull Call<DBModelVerifica> call,@NotNull Response<DBModelVerifica> response) {
+                DBModelVerifica dbModelVerifica = response.body();
+                if(dbModelVerifica != null) {
+                    List<DBModelVerificaResults> verificaResults = dbModelVerifica.getResults();
+                    if(verificaResults.get(0).getCodVerifica() == 1) {
+                        Call<DBModelVerifica> dbModelVerificaCall = retrofitServiceDBInterno.VerificaPasswdAdmin(email, password);
+                        dbModelVerificaCall.enqueue(new Callback<DBModelVerifica>() {
+                            @Override public void onResponse(@NotNull Call<DBModelVerifica> call,@NotNull Response<DBModelVerifica> response) {
+                                DBModelVerifica dbModelVerifica1 = response.body();
+                                if(dbModelVerifica1 != null) {
+                                    List<DBModelVerificaResults> verificaResultsList = dbModelVerifica1.getResults();
+                                    if(verificaResultsList.get(0).getCodVerifica() == 1) {
+                                        Call<DBModelFoto> fotoCall = retrofitServiceDBInterno.PrendiFotoAdmin(email, password);
+                                        fotoCall.enqueue(new Callback<DBModelFoto>() {
+                                            @Override public void onResponse(@NotNull Call<DBModelFoto> call,@NotNull Response<DBModelFoto> response) {
+                                                DBModelFoto dbModelFoto = response.body();
+                                                if(dbModelFoto != null){
+                                                    List<DBModelFotoResponce> fotoResponces = dbModelFoto.getResult();
+                                                    setNomeAdmin(email);
+                                                    setFotoAdmin(fotoResponces.get(0).getFoto_Profilo());
+                                                    LogIn[0] = "Successfull";
+                                                    if(Ricordami.isSelected()){
+                                                        RememberMe.Config(email, password);
                                                     }
+                                                    Platform.runLater(new Runnable() {
+                                                        @Override public void run() {
+                                                            if(LogIn[0].equals("Successfull")) {
+                                                                stage.close();
+                                                                Node source = (Node) event.getSource();
+                                                                Stage primaryStage = (Stage) source.getScene().getWindow();
+                                                                HomeStage(primaryStage);
+                                                            }
+                                                        }
+                                                    });
                                                 }
-                                                @Override public void onFailure(@NotNull Call<DBModelFoto> call,@NotNull Throwable t) {
-                                                    Error.setFont(Font.font("Calibri", 15));
-                                                    Error.setTextFill(Color.RED);
-                                                    Error.setText("Ops qualcosa e' andato storto.");
-                                                    LogIn[0] = "Error";
-                                                }
-                                            });
-                                        }else {
-                                            Error.setFont(Font.font("Calibri", 15));
-                                            Error.setTextFill(Color.RED);
-                                            Error.setText("Errore: Password Sbagliata.");
-                                            LogIn[0] = "Error";
-                                        }
+                                            }
+                                            @Override public void onFailure(@NotNull Call<DBModelFoto> call,@NotNull Throwable t) {
+                                                Error.setFont(Font.font("Calibri", 15));
+                                                Error.setTextFill(Color.RED);
+                                                Error.setText("Ops qualcosa e' andato storto.");
+                                                LogIn[0] = "Error";
+                                            }
+                                        });
+                                    }else {
+                                        Error.setFont(Font.font("Calibri", 15));
+                                        Error.setTextFill(Color.RED);
+                                        Error.setText("Errore: Password Sbagliata.");
+                                        LogIn[0] = "Error";
                                     }
                                 }
-                                @Override public void onFailure(@NotNull Call<DBModelVerifica> call,@NotNull Throwable t) {
-                                    Error.setFont(Font.font("Calibri", 15));
-                                    Error.setTextFill(Color.RED);
-                                    Error.setText("Ops qualcosa è andato storto.");
-                                    LogIn[0] = "Error";
-                                }
-                            });
-                        }else {
-                            Error.setFont(Font.font("Calibri", 15));
-                            Error.setTextFill(Color.RED);
-                            Error.setText("Errore: Admin non presente.");
-                            LogIn[0] = "Error";
-                        }
+                            }
+                            @Override public void onFailure(@NotNull Call<DBModelVerifica> call,@NotNull Throwable t) {
+                                Error.setFont(Font.font("Calibri", 15));
+                                Error.setTextFill(Color.RED);
+                                Error.setText("Ops qualcosa è andato storto.");
+                                LogIn[0] = "Error";
+                            }
+                        });
+                    }else {
+                        Error.setFont(Font.font("Calibri", 15));
+                        Error.setTextFill(Color.RED);
+                        Error.setText("Errore: Admin non presente.");
+                        LogIn[0] = "Error";
                     }
                 }
-                @Override public void onFailure(@NotNull Call<DBModelVerifica> call,@NotNull Throwable t) {
-                    Error.setFont(Font.font("Calibri", 15));
-                    Error.setTextFill(Color.RED);
-                    Error.setText("Ops qualcosa è andato storto.");
-                    LogIn[0] = "Error";
-                }
-            });
-        }
+            }
+            @Override public void onFailure(@NotNull Call<DBModelVerifica> call,@NotNull Throwable t) {
+                Error.setFont(Font.font("Calibri", 15));
+                Error.setTextFill(Color.RED);
+                Error.setText("Ops qualcosa è andato storto.");
+                LogIn[0] = "Error";
+            }
+        });
     }
 
     @FXML private void AnnullaButtonClicked(MouseEvent event){
