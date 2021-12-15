@@ -14,7 +14,7 @@
                 <Image url="@../images/logocinemates.png" />
             </image>
         </ImageView>
-        <Button fx:id="ConfermaButton" layoutX="78.0" layoutY="423.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
+        <Button fx:id="ContinaButton" layoutX="78.0" layoutY="423.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Continua" textFill="#ff9b00">
             <font>
                 <Font name="Calibri Bold" size="15.0" />
             </font>

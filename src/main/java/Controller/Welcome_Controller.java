@@ -9,16 +9,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Logger;
 
@@ -57,7 +53,7 @@ public class Welcome_Controller extends Controller{
         closeButton.setOnMouseClicked(this::ButtonCloseClicked);
         minimizeButton.setOnMouseClicked(this::ButtonMinimizeClicked);
         SignInButton.setOnMouseClicked(this::SignInButtonClicked);
-        LogInButton.setOnMouseClicked(this::LogInButtonClicked);
+        LogInButton.setOnMouseClicked(this::AccediButtonClicked);
     }
 
     @FXML private void ButtonCloseClicked(MouseEvent event) {
@@ -96,7 +92,7 @@ public class Welcome_Controller extends Controller{
         }
     }
 
-    @FXML private void LogInButtonClicked(@NotNull MouseEvent event) {
+    @FXML private void AccediButtonClicked(@NotNull MouseEvent event) {
         File file = new File("Config.txt");
         Stage stage = (Stage) LogInButton.getScene().getWindow();
         stage.close();

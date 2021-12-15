@@ -14,7 +14,7 @@
             <Image url="@../images/logocinemates.png" />
          </image>
       </ImageView>
-      <Button fx:id="LogInButton" layoutX="82.0" layoutY="395.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="Log In" textFill="DARKORANGE">
+      <Button fx:id="LogInButton" layoutX="82.0" layoutY="395.0" mnemonicParsing="false" styleClass="but_Log" stylesheets="@../style/ButtonLog.css" text="LogIn" textFill="DARKORANGE">
          <font>
             <Font name="Calibri Bold" size="15.0" />
          </font></Button>

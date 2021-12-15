@@ -328,7 +328,7 @@ public class ConsigliaAgliUtenti_Controller extends Controller{
                     }else{
                         ErroreSuccesso.setFont(Font.font("Calibri", 15));
                         ErroreSuccesso.setTextFill(Color.RED);
-                        ErroreSuccesso.setText(".");
+                        ErroreSuccesso.setText("Attenzione:\nRicaricare\nconsigliati.");
                     }
                 }
             }

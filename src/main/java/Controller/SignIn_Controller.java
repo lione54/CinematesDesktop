@@ -8,7 +8,6 @@ import Model.ModelDBInterno.DBModelVerificaResults;
 import RetrofitClient.RetrofitClientDBInterno;
 import RetrofitService.RetrofitServiceDBInterno;
 import javafx.application.Platform;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -28,21 +27,14 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import javax.activation.DataHandler;
-import javax.activation.DataSource;
-import javax.activation.FileDataSource;
 import javax.mail.*;
-import javax.mail.internet.InternetAddress;
-import javax.mail.internet.MimeBodyPart;
-import javax.mail.internet.MimeMessage;
-import javax.mail.internet.MimeMultipart;
 import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
 
 public class SignIn_Controller extends Controller {
-    @FXML private Button closeButton, minimizeButton, ConfermaButton, AnnullaButton;
+    @FXML private Button closeButton, minimizeButton, ContinaButton, AnnullaButton;
     @FXML private TextField Email;
     @FXML private Label Error;
     private RetrofitServiceDBInterno retrofitServiceDBInterno;
@@ -56,7 +48,7 @@ public class SignIn_Controller extends Controller {
     @Override public void Eventi() {
         closeButton.setOnMouseClicked(this::ButtonCloseClicked);
         minimizeButton.setOnMouseClicked(this::ButtonMinimizeClicked);
-        ConfermaButton.setOnMouseClicked(this::ConfermaButtonClicked);
+        ContinaButton.setOnMouseClicked(this::ContinuaButtonClicked);
         AnnullaButton.setOnMouseClicked(this::AnnullaButtonClicked);
     }
 
@@ -72,15 +64,21 @@ public class SignIn_Controller extends Controller {
         stage.setIconified(true);
     }
 
-    @FXML private void ConfermaButtonClicked(@NotNull Event event) {
-        Stage stage = (Stage) ConfermaButton.getScene().getWindow();
+    @FXML private void ContinuaButtonClicked(MouseEvent event) {
+        Stage stage = (Stage) ContinaButton.getScene().getWindow();
         final String[] SignIn = {null};
         String email = Email.getText().toString();
         String Passwd = RandomPass(10).toString();
-        if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}"))){
-            Error.setFont(Font.font("Calibri", 15));
-            Error.setTextFill(Color.RED);
-            Error.setText("Errore: Email Non Valida.");
+        if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}")) || email.length() <= 0){
+            if(email.length() <= 0) {
+                Error.setFont(Font.font("Calibri", 15));
+                Error.setTextFill(Color.RED);
+                Error.setText("Errore: Scrivi qualcosa.");
+            }else{
+                Error.setFont(Font.font("Calibri", 15));
+                Error.setTextFill(Color.RED);
+                Error.setText("Errore: Email Non Valida.");
+            }
         } else {
             Call<DBModelVerifica> verificaCall = retrofitServiceDBInterno.VerificaEsistenzaAdmin(email);
             verificaCall.enqueue(new Callback<DBModelVerifica>() {
@@ -148,7 +146,7 @@ public class SignIn_Controller extends Controller {
         }
     }
 
-    @FXML private void AnnullaButtonClicked(@NotNull Event event){
+    @FXML private void AnnullaButtonClicked(MouseEvent event){
         Stage stage = (Stage) AnnullaButton.getScene().getWindow();
         stage.close();
         Node source = (Node)  event.getSource();

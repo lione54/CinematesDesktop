@@ -123,12 +123,24 @@ public class LogIn_Controller extends Controller{
         Stage stage = (Stage) LogInButton.getScene().getWindow();
         String email = Email.getText().toString();
         String Password = Passwd.getText().toString();
-        if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}"))) {
-            Error.setFont(Font.font("Calibri", 15));
-            Error.setTextFill(Color.RED);
-            Error.setText("Errore: Email Non Valida.");
+        if (!(email.matches("[a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,4}")) || email.length() <= 0) {
+                if (email.length() <= 0) {
+                    Error.setFont(Font.font("Calibri", 15));
+                    Error.setTextFill(Color.RED);
+                    Error.setText("Errore: Inserire e-mail.");
+                } else {
+                    Error.setFont(Font.font("Calibri", 15));
+                    Error.setTextFill(Color.RED);
+                    Error.setText("Errore: E-mail Non Valida.");
+                }
         }else{
-            LogIn(stage, event, email, Password);
+            if(Password.length() <= 0){
+                Error.setFont(Font.font("Calibri", 15));
+                Error.setTextFill(Color.RED);
+                Error.setText("Errore: Inserire password.");
+            }else {
+                LogIn(stage, event, email, Password);
+            }
         }
     }
 
@@ -182,7 +194,7 @@ public class LogIn_Controller extends Controller{
                                     }else {
                                         Error.setFont(Font.font("Calibri", 15));
                                         Error.setTextFill(Color.RED);
-                                        Error.setText("Errore: Password Sbagliata.");
+                                        Error.setText("Errore: Password Errata.");
                                         LogIn[0] = "Error";
                                     }
                                 }

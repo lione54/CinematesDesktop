@@ -255,7 +255,7 @@ public class Home_Controller extends Controller {
                 if(dbModelVerifica != null){
                     List<DBModelVerificaResults> verificaResults = dbModelVerifica.getResults();
                     if(verificaResults.get(0).getCodVerifica() == 1){
-                        Call<DBModelSegnalazioni> segnalazioniCall = retrofitServiceDBInterno.CercaSegnalazioni(LogIn_Controller.getNomeAdmin());
+                        Call<DBModelSegnalazioni> segnalazioniCall = retrofitServiceDBInterno.PrendiSegnalazioni(LogIn_Controller.getNomeAdmin());
                         segnalazioniCall.enqueue(new retrofit2.Callback<DBModelSegnalazioni>() {
                             @Override public void onResponse(@NotNull Call<DBModelSegnalazioni> call,@NotNull Response<DBModelSegnalazioni> response) {
                                 DBModelSegnalazioni dbModelSegnalazioni = response.body();
