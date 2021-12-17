@@ -68,6 +68,14 @@ Controller/Dettagli_Controller.java
  Controller.Dettagli_Controller$1$1
  Controller.Dettagli_Controller$2
  Controller.Dettagli_Controller$2$1
+Controller/LogOut_Controller.java
+ Controller.LogOut_Controller
+Controller/LogIn_Controller.java
+ Controller.LogIn_Controller
+ Controller.LogIn_Controller$1
+ Controller.LogIn_Controller$1$1
+ Controller.LogIn_Controller$1$1$1
+ Controller.LogIn_Controller$1$1$1$1
 Controller/Home_Controller.java
  Controller.Home_Controller
  Controller.Home_Controller$1
@@ -90,11 +98,3 @@ Controller/CambiaPassword_Controller.java
  Controller.CambiaPassword_Controller$3$1
  Controller.CambiaPassword_Controller$4
  Controller.CambiaPassword_Controller$4$1
-Controller/LogIn_Controller.java
- Controller.LogIn_Controller
- Controller.LogIn_Controller$1
- Controller.LogIn_Controller$1$1
- Controller.LogIn_Controller$1$1$1
- Controller.LogIn_Controller$1$1$1$1
-Controller/LogOut_Controller.java
- Controller.LogOut_Controller

@@ -201,12 +201,17 @@ public class CambiaPassword_Controller extends Controller{
         String VecchiaPswd = VecchiaPassword.getText().toString();
         String NuovaPswd = NuovaPassword.getText().toString();
         String ConfermaPswd = ConfermaPassword.getText().toString();
-        if(VecchiaPswd.length() == 0 || NuovaPswd.length() == 0 || ConfermaPswd.length() == 0){
-            if (VecchiaPswd.length() == 0){
+        CambiaPassword(VecchiaPswd, NuovaPswd, ConfermaPswd, LogIn_Controller.getNomeAdmin());
+    }
+
+    public void CambiaPassword(String vecchiaPswd, String nuovaPswd, String confermaPswd, String nomeAdmin) {
+        retrofitServiceDBInterno = RetrofitClientDBInterno.getClient().create(RetrofitServiceDBInterno.class);
+        if(vecchiaPswd.length() == 0 || nuovaPswd.length() == 0 || confermaPswd.length() == 0){
+            if (vecchiaPswd.length() == 0){
                 ErrorePassword.setFont(Font.font("Calibri", 15));
                 ErrorePassword.setTextFill(Color.RED);
                 ErrorePassword.setText("Errore: Il campo Vecchia Password e' vuoto.");
-            }else if(NuovaPswd.length() == 0){
+            }else if(nuovaPswd.length() == 0){
                 ErrorePassword.setFont(Font.font("Calibri", 15));
                 ErrorePassword.setTextFill(Color.RED);
                 ErrorePassword.setText("Errore: Il campo Nuova Password e' vuoto.");
@@ -215,27 +220,27 @@ public class CambiaPassword_Controller extends Controller{
                 ErrorePassword.setTextFill(Color.RED);
                 ErrorePassword.setText("Errore: Il campo Conferma Password e' vuoto.");
             }
-        }else if(VecchiaPswd.equals(NuovaPswd)){
+        }else if(vecchiaPswd.equals(nuovaPswd)){
             ErrorePassword.setFont(Font.font("Calibri", 15));
             ErrorePassword.setTextFill(Color.RED);
             ErrorePassword.setText("Errore: Le password non coincidono.");
-        }else if(NuovaPswd.length() <= 5){
+        }else if(nuovaPswd.length() <= 5){
             ErrorePassword.setFont(Font.font("Calibri", 15));
             ErrorePassword.setTextFill(Color.RED);
             ErrorePassword.setText("Errore: Password troppo breve deve essere almeno di 6 caratteri.");
-        }else if(!(ConfermaPswd.equals(NuovaPswd))){
+        }else if(!(confermaPswd.equals(nuovaPswd))){
             ErrorePassword.setFont(Font.font("Calibri", 15));
             ErrorePassword.setTextFill(Color.RED);
             ErrorePassword.setText("Errore: La password non coincide.");
         }else{
-            Call<DBModelVerifica> verificaCall = retrofitServiceDBInterno.VerificaPasswdAdmin(LogIn_Controller.getNomeAdmin(),VecchiaPswd);
+            Call<DBModelVerifica> verificaCall = retrofitServiceDBInterno.VerificaPasswdAdmin(nomeAdmin,vecchiaPswd);
             verificaCall.enqueue(new Callback<DBModelVerifica>() {
                 @Override public void onResponse(@NotNull Call<DBModelVerifica> call,@NotNull Response<DBModelVerifica> response) {
                     DBModelVerifica dbModelVerifica = response.body();
                     if(dbModelVerifica != null){
                         List<DBModelVerificaResults> results = dbModelVerifica.getResults();
                         if(results.get(0).getCodVerifica() == 1){
-                            Call<DBModelResponseToInsert> insertCall = retrofitServiceDBInterno.CambiaPasswdAdmin(LogIn_Controller.getNomeAdmin(), ConfermaPswd);
+                            Call<DBModelResponseToInsert> insertCall = retrofitServiceDBInterno.CambiaPasswdAdmin(nomeAdmin, confermaPswd);
                             insertCall.enqueue(new Callback<DBModelResponseToInsert>() {
                                 @Override public void onResponse(@NotNull Call<DBModelResponseToInsert> call,@NotNull Response<DBModelResponseToInsert> response) {
                                     DBModelResponseToInsert dbModelResponseToInsert = response.body();
@@ -274,7 +279,6 @@ public class CambiaPassword_Controller extends Controller{
                 }
             });
         }
-
     }
 
 
