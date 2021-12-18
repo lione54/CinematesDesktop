@@ -29,7 +29,7 @@ buildConfig {
     def Username = "officialcinemates@gmail.com"
     def Password = "TRu84NGyPf3a380J"
     def TheMovieDBApiKey = "a3c55960c810bc8ae9b2e8d77d4f227c"
-    def IP_AWS = "188.152.179.151"
+    def IP_AWS = "34.252.203.71"
     def host = "smtp.gmail.com"
     def port = "587";
     def Logo_Email = "src/main/resources/images/logocinemates.png"
